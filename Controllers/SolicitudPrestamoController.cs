@@ -166,11 +166,16 @@ namespace Back_End.Controllers
                 TableLogOnInfo myLogin;
 
                 string conexion = DB.Database.Connection.ConnectionString;
-                string usuario = conexion.Substring(conexion.LastIndexOf("user id")).Substring(8);
-                string password = conexion.Substring(conexion.LastIndexOf("password")).Substring(9);
+                string usuario = string.Empty;
+                string password = string.Empty;
 
-                usuario = usuario.Substring(0, usuario.IndexOf(';'));
-                password = password.Substring(0, password.IndexOf(';'));
+                if (conexion.Contains("user id"))
+                {
+                    usuario = conexion.Substring(conexion.LastIndexOf("user id")).Substring(8);
+                    password = conexion.Substring(conexion.LastIndexOf("password")).Substring(9);
+                    usuario = usuario.Substring(0, usuario.IndexOf(';'));
+                    password = password.Substring(0, password.IndexOf(';'));
+                }
 
                 foreach (Table myTable in rpt.Database.Tables)
                 {
@@ -181,12 +186,11 @@ namespace Back_End.Controllers
                     myLogin.ConnectionInfo.Password = password;
                     myLogin.ConnectionInfo.Type = ConnectionInfoType.SQL;
                     myLogin.ConnectionInfo.AllowCustomConnection = true;
-                    myLogin.ConnectionInfo.IntegratedSecurity = false;
+                    myLogin.ConnectionInfo.IntegratedSecurity = string.IsNullOrWhiteSpace(usuario);
 
                     myTable.ApplyLogOnInfo(myLogin);
                     myTable.Location = DB.Database.Connection.Database + ".dbo." + myTable.Location;
                 }
-
 
                 var pdf = rpt.ExportToStream(ExportFormatType.PortableDocFormat);
                 byte[] archivo = new byte[pdf.Length];

@@ -126,7 +126,7 @@ namespace Back_End.Clases
         #region Abrir y cerrar conexion
         private string ObtenerCadenaConexion()
         {
-            return this.AppSettings.Conexion; //ConfigurationManager.ConnectionStrings["BD_JAPAC"].ConnectionString;
+            return this.AppSettings.Conexion;
         }
         // Abrir y cerrar conexion
         private bool CrearConexion()
