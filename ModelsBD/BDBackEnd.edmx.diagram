@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="be978a7edb544a5a85ab11c00c826479" Name="Diagram1" ZoomLevel="88">
+        <EntityTypeShape EntityType="BackEndModel.CAP_Corte" Width="2.5" PointX="5.25" PointY="16.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BackEndModel.CAP_CorteDetalle" Width="2.25" PointX="14.25" PointY="18.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BackEndModel.CAP_MovimientosCuenta" Width="2.625" PointX="20.125" PointY="19.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BackEndModel.CAP_SolicitudPrestamo" Width="2.25" PointX="12" PointY="20.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BackEndModel.CAT_CategoriasGasto" Width="2.25" PointX="5.25" PointY="23.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BackEndModel.CAT_Cuentas" Width="2.375" PointX="15" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BackEndModel.CAT_Departamentos" Width="2.125" PointX="4.75" PointY="28.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BackEndModel.CAT_Empleados" Width="2.5" PointX="11" PointY="28.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BackEndModel.CAT_EmpleadosArchivos" Width="2" PointX="15" PointY="22" IsExpanded="true" />
+        <EntityTypeShape EntityType="BackEndModel.CAT_Navegador" Width="2.25" PointX="6" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BackEndModel.CAT_PermisoUsuario" Width="2.25" PointX="8.25" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BackEndModel.CAT_Puestos" Width="2.25" PointX="7.5" PointY="28" IsExpanded="true" />
+        <EntityTypeShape EntityType="BackEndModel.CAT_Roles" Width="1.875" PointX="0.5" PointY="23.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BackEndModel.CAT_RubrosPrestamos" Width="2.25" PointX="2.25" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BackEndModel.CAT_TabuladorAguinaldo" Width="2.25" PointX="0.5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BackEndModel.CAT_TabuladorPrimaVacacional" Width="2.75" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BackEndModel.CAT_TipoMovimiento" Width="2.25" PointX="15" PointY="26.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BackEndModel.CAT_Usuarios" Width="2.875" PointX="0.5" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="BackEndModel.CFG_Configuracion" Width="2.625" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BackEndModel.LOG_RecuperarPassword" Width="2.875" PointX="5.25" PointY="35.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BackEndModel.LOG_Sesiones" Width="2.875" PointX="5.25" PointY="38.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BackEndModel.CAT_Puestos_respaldo" Width="2.875" PointX="4.875" PointY="3.75" IsExpanded="true" />
+        <AssociationConnector Association="BackEndModel.FK_CAP_Corte_CAT_RubrosPrestamos" ManuallyRouted="false" />
+        <AssociationConnector Association="BackEndModel.FK_CAP_Corte_CAT_Usuarios_Elimino" ManuallyRouted="false" />
+        <AssociationConnector Association="BackEndModel.FK_CAP_Corte_CAT_Usuarios_Modifico" ManuallyRouted="false" />
+        <AssociationConnector Association="BackEndModel.FK_CAP_Corte_CAT_Usuarios_Registro" ManuallyRouted="false" />
+        <AssociationConnector Association="BackEndModel.FK_CAP_CorteDetalle_CAP_Corte" ManuallyRouted="false" />
+        <AssociationConnector Association="BackEndModel.FK_CAP_MovimientosCuenta_CAP_Corte" ManuallyRouted="false" />
+        <AssociationConnector Association="BackEndModel.FK_CAP_CorteDetalle_CAP_SolicitudPrestamo" ManuallyRouted="false" />
+        <AssociationConnector Association="BackEndModel.FK_CAP_MovimientosCuenta_CAP_MovimientosCuenta" ManuallyRouted="false" />
+        <AssociationConnector Association="BackEndModel.FK_CAP_MovimientosCuenta_CAP_SolicitudPrestamo" ManuallyRouted="false" />
+        <AssociationConnector Association="BackEndModel.FK_CAP_MovimientosCuenta_CAT_CategoriasGasto" ManuallyRouted="false" />
+        <AssociationConnector Association="BackEndModel.FK_CAP_MovimientosCuenta_CAT_Cuentas" ManuallyRouted="false" />
+        <AssociationConnector Association="BackEndModel.FK_CAP_MovimientosCuenta_CAT_TipoMovimiento" ManuallyRouted="false" />
+        <AssociationConnector Association="BackEndModel.FK_CAP_SolicitudPrestamo_CAT_Empleados" ManuallyRouted="false" />
+        <AssociationConnector Association="BackEndModel.FK_CAP_SolicitudPrestamo_CAT_RubrosPrestamos" ManuallyRouted="false" />
+        <AssociationConnector Association="BackEndModel.FK_CAP_SolicitudPrestamo_CAT_Usuarios_Elimino" ManuallyRouted="false" />
+        <AssociationConnector Association="BackEndModel.FK_CAP_SolicitudPrestamo_CAT_Usuarios_Modifico" ManuallyRouted="false" />
+        <AssociationConnector Association="BackEndModel.FK_CAP_SolicitudPrestamo_CAT_Usuarios_Registro" ManuallyRouted="false" />
+        <AssociationConnector Association="BackEndModel.FK_CAT_CategoriasGasto_CAT_Usuarios_Elimino" ManuallyRouted="false" />
+        <AssociationConnector Association="BackEndModel.FK_CAT_CategoriasGasto_CAT_Usuarios_Modifico" ManuallyRouted="false" />
+        <AssociationConnector Association="BackEndModel.FK_CAT_CategoriasGasto_CAT_Usuarios_Registro" ManuallyRouted="false" />
+        <AssociationConnector Association="BackEndModel.FK_CAT_Departamentos_CAT_Usuarios_Elimino" ManuallyRouted="false" />
+        <AssociationConnector Association="BackEndModel.FK_CAT_Departamentos_CAT_Usuarios_Modifico" ManuallyRouted="false" />
+        <AssociationConnector Association="BackEndModel.FK_CAT_Departamentos_CAT_Usuarios_Registro" ManuallyRouted="false" />
+        <AssociationConnector Association="BackEndModel.FK_CAT_Puestos_CAT_Departamentos" ManuallyRouted="false" />
+        <AssociationConnector Association="BackEndModel.FK__CAT_Empleados_CAT_Puestos" ManuallyRouted="false" />
+        <AssociationConnector Association="BackEndModel.FK_CAT_EmpleadosArchivos_CAT_Empleados" ManuallyRouted="false" />
+        <AssociationConnector Association="BackEndModel.FK_CAT_EmpleadosArchivos_CAT_Usuarios_Eliminacion" ManuallyRouted="false" />
+        <AssociationConnector Association="BackEndModel.FK_CAT_EmpleadosArchivos_CAT_Usuarios_Registro" ManuallyRouted="false" />
+        <AssociationConnector Association="BackEndModel.FK_CAT_Navegador_CAT_Navegador" ManuallyRouted="false" />
+        <AssociationConnector Association="BackEndModel.FK_CAT_PermisoUsuario_CAT_Navegador" ManuallyRouted="false" />
+        <AssociationConnector Association="BackEndModel.FK_CAT_PermisoUsuario_CAT_Usuarios" ManuallyRouted="false" />
+        <AssociationConnector Association="BackEndModel.FK_CAT_Puestos_CAT_Puestos" ManuallyRouted="false" />
+        <AssociationConnector Association="BackEndModel.FK_CAT_Usuarios_CAT_Roles" ManuallyRouted="false" />
+        <AssociationConnector Association="BackEndModel.FK_LOG_RecuperarPassword_CAT_Usuarios" ManuallyRouted="false" />
+        <AssociationConnector Association="BackEndModel.FK_LOG_Sesiones_CAT_Usuarios" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

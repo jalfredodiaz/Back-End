@@ -1,0 +1,2249 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BackEndModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CAP_Corte">
+          <Key>
+            <PropertyRef Name="nIdCorte" />
+          </Key>
+          <Property Name="nIdCorte" Type="int" Nullable="false" />
+          <Property Name="nIdRubro" Type="int" Nullable="false" />
+          <Property Name="dFechaCorte" Type="datetime" Nullable="false" />
+          <Property Name="nTotal" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="bPagado" Type="bit" Nullable="false" />
+          <Property Name="bActivo" Type="bit" Nullable="false" />
+          <Property Name="cUsuario_Registro" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="dFecha_Registro" Type="datetime" Nullable="false" />
+          <Property Name="cUsuario_UltimaModificacion" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="dFecha_UltimaModificacion" Type="datetime" Nullable="false" />
+          <Property Name="cUsuario_Eliminacion" Type="varchar" MaxLength="30" />
+          <Property Name="dFecha_Eliminacion" Type="datetime" />
+          <Property Name="nVersion" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CAP_CorteDetalle">
+          <Key>
+            <PropertyRef Name="nIdCorte" />
+            <PropertyRef Name="nIdPrestamo" />
+          </Key>
+          <Property Name="nIdCorte" Type="int" Nullable="false" />
+          <Property Name="nIdPrestamo" Type="int" Nullable="false" />
+          <Property Name="nImporte" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CAP_MovimientosCuenta">
+          <Key>
+            <PropertyRef Name="nIdMovimiento" />
+          </Key>
+          <Property Name="nIdMovimiento" Type="int" Nullable="false" />
+          <Property Name="nIdCuenta" Type="int" Nullable="false" />
+          <Property Name="nIdTipoMovimiento" Type="int" Nullable="false" />
+          <Property Name="nIdCategoria" Type="int" Nullable="false" />
+          <Property Name="nIdCorte" Type="int" />
+          <Property Name="nIdPrestamo" Type="int" />
+          <Property Name="nIdMovimientoCancela" Type="int" />
+          <Property Name="nImporte" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="cObservaciones" Type="varchar" MaxLength="2000" Nullable="false" />
+          <Property Name="cRutaDocumento" Type="varchar" MaxLength="2000" />
+          <Property Name="bActivo" Type="bit" Nullable="false" />
+          <Property Name="cUsuario_Registro" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="dFecha_Registro" Type="datetime" Nullable="false" />
+          <Property Name="cUsuario_Eliminacion" Type="varchar" MaxLength="30" />
+          <Property Name="dFecha_Eliminacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="CAP_SolicitudPrestamo">
+          <Key>
+            <PropertyRef Name="nIdPrestamo" />
+          </Key>
+          <Property Name="nIdPrestamo" Type="int" Nullable="false" />
+          <Property Name="nCodEmpleado" Type="int" Nullable="false" />
+          <Property Name="nIdRubro" Type="int" Nullable="false" />
+          <Property Name="nImporte" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="nSaldo" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="dFechaCobro" Type="datetime" Nullable="false" />
+          <Property Name="cRutaArchivoINE_Frente" Type="varchar" MaxLength="1000" />
+          <Property Name="cRutaArchivoINE_Atras" Type="varchar" MaxLength="1000" />
+          <Property Name="cRutaPagare" Type="varchar" MaxLength="1000" />
+          <Property Name="cRutaCheque" Type="varchar" MaxLength="1000" />
+          <Property Name="nVersion" Type="smallint" Nullable="false" />
+          <Property Name="bConCorte" Type="bit" Nullable="false" />
+          <Property Name="bActivo" Type="bit" Nullable="false" />
+          <Property Name="cUsuario_Registro" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="dFecha_Registro" Type="datetime" Nullable="false" />
+          <Property Name="cUsuario_UltimaModificacion" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="dFecha_UltimaModificacion" Type="datetime" Nullable="false" />
+          <Property Name="cUsuario_Eliminacion" Type="varchar" MaxLength="30" />
+          <Property Name="dFecha_Eliminacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="CAT_CategoriasGasto">
+          <Key>
+            <PropertyRef Name="nIdCategoria" />
+          </Key>
+          <Property Name="nIdCategoria" Type="int" Nullable="false" />
+          <Property Name="cCategoria" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="bActivo" Type="bit" Nullable="false" />
+          <Property Name="cUsuario_Registro" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="dFecha_Registro" Type="datetime" Nullable="false" />
+          <Property Name="cUsuario_UltimaModificacion" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="dFecha_UltimaModificacion" Type="datetime" Nullable="false" />
+          <Property Name="cUsuario_Eliminacion" Type="varchar" MaxLength="30" />
+          <Property Name="dFecha_Eliminacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="CAT_Cuentas">
+          <Key>
+            <PropertyRef Name="nIdCuenta" />
+          </Key>
+          <Property Name="nIdCuenta" Type="int" Nullable="false" />
+          <Property Name="cCuenta" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="nSaldo" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="bActivo" Type="bit" Nullable="false" />
+          <Property Name="cUsuario_Registro" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="dFecha_Registro" Type="datetime" Nullable="false" />
+          <Property Name="cUsuario_UltimaModificacion" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="dFecha_UltimaModificacion" Type="datetime" Nullable="false" />
+          <Property Name="cUsuario_Eliminacion" Type="varchar" MaxLength="30" />
+          <Property Name="dFecha_Eliminacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="CAT_Departamentos">
+          <Key>
+            <PropertyRef Name="nIdDepartamento" />
+          </Key>
+          <Property Name="nIdDepartamento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cDepartamento" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="bActivo" Type="bit" Nullable="false" />
+          <Property Name="cUsuario_Registro" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="dFecha_Registro" Type="datetime" Nullable="false" />
+          <Property Name="cUsuario_UltimaModificacion" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="dFecha_UltimaModificacion" Type="datetime" Nullable="false" />
+          <Property Name="cUsuario_Eliminacion" Type="varchar" MaxLength="30" />
+          <Property Name="dFecha_Eliminacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="CAT_Empleados">
+          <Key>
+            <PropertyRef Name="nCodEmpleado" />
+          </Key>
+          <Property Name="nCodEmpleado" Type="int" Nullable="false" />
+          <Property Name="cNombre" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="nIdPuesto" Type="int" Nullable="false" />
+          <Property Name="dFechaIngreso" Type="date" Nullable="false" />
+          <Property Name="nEstatusCrecimiento" Type="smallint" Nullable="false" />
+          <Property Name="cObservaciones" Type="varchar" MaxLength="2000" />
+          <Property Name="bActivo" Type="bit" Nullable="false" />
+          <Property Name="cUsuario_Registro" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="dFecha_Registro" Type="datetime" Nullable="false" />
+          <Property Name="cUsuario_UltimaModificacion" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="dFecha_UltimaModificacion" Type="datetime" />
+          <Property Name="cUsuario_Eliminacion" Type="varchar" MaxLength="30" />
+          <Property Name="dFecha_Eliminacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="CAT_EmpleadosArchivos">
+          <Key>
+            <PropertyRef Name="nIdArchivoEmpleado" />
+          </Key>
+          <Property Name="nIdArchivoEmpleado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nCodEmpleado" Type="int" Nullable="false" />
+          <Property Name="cRutaArchivo" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="cNombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="bActivo" Type="bit" Nullable="false" />
+          <Property Name="cUsuario_Registro" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="dFecha_Registro" Type="datetime" Nullable="false" />
+          <Property Name="cUsuario_Eliminacion" Type="varchar" MaxLength="30" />
+          <Property Name="dFecha_Eliminacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="CAT_Navegador">
+          <Key>
+            <PropertyRef Name="nRama" />
+          </Key>
+          <Property Name="nRama" Type="int" Nullable="false" />
+          <Property Name="nRamaPadre" Type="int" />
+          <Property Name="nOrden" Type="int" Nullable="false" />
+          <Property Name="cNombreRama" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="cOpcion" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="cRuta" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="bActivo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CAT_PermisoUsuario">
+          <Key>
+            <PropertyRef Name="cLogin" />
+            <PropertyRef Name="nRama" />
+          </Key>
+          <Property Name="cLogin" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="nRama" Type="int" Nullable="false" />
+          <Property Name="bActivo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CAT_Puestos">
+          <Key>
+            <PropertyRef Name="nIdPuesto" />
+          </Key>
+          <Property Name="nIdPuesto" Type="int" Nullable="false" />
+          <Property Name="nIdPuestoPadre" Type="int" />
+          <Property Name="cPuesto" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="nSueldo" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="nIdDepartamento" Type="int" Nullable="false" />
+          <Property Name="bActivo" Type="bit" Nullable="false" />
+          <Property Name="cUsuario_Registro" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="dFecha_Registro" Type="datetime" Nullable="false" />
+          <Property Name="cUsuario_UltimaModificacion" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="dFecha_UltimaModificacion" Type="datetime" />
+          <Property Name="cUsuario_Eliminacion" Type="varchar" MaxLength="30" />
+          <Property Name="dFecha_Eliminacion" Type="datetime" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'BackEnd.dbo.CAT_Puestos_respaldo' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="CAT_Puestos_respaldo">
+          <Key>
+            <PropertyRef Name="nIdPuesto" />
+            <PropertyRef Name="cPuesto" />
+            <PropertyRef Name="nSueldo" />
+            <PropertyRef Name="nIdDepartamento" />
+            <PropertyRef Name="bActivo" />
+            <PropertyRef Name="cUsuario_Registro" />
+            <PropertyRef Name="dFecha_Registro" />
+            <PropertyRef Name="cUsuario_UltimaModificacion" />
+          </Key>
+          <Property Name="nIdPuesto" Type="int" Nullable="false" />
+          <Property Name="nIdPuestoPadre" Type="int" />
+          <Property Name="cPuesto" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="nSueldo" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="nIdDepartamento" Type="int" Nullable="false" />
+          <Property Name="bActivo" Type="bit" Nullable="false" />
+          <Property Name="cUsuario_Registro" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="dFecha_Registro" Type="datetime" Nullable="false" />
+          <Property Name="cUsuario_UltimaModificacion" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="dFecha_UltimaModificacion" Type="datetime" />
+          <Property Name="cUsuario_Eliminacion" Type="varchar" MaxLength="30" />
+          <Property Name="dFecha_Eliminacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="CAT_Roles">
+          <Key>
+            <PropertyRef Name="nIdRol" />
+          </Key>
+          <Property Name="nIdRol" Type="int" Nullable="false" />
+          <Property Name="cNombre" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CAT_RubrosPrestamos">
+          <Key>
+            <PropertyRef Name="nIdRubro" />
+          </Key>
+          <Property Name="nIdRubro" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cRubro" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="bMensual" Type="bit" Nullable="false" />
+          <Property Name="nMesCorte" Type="int" Nullable="false" />
+          <Property Name="nDiaCorte" Type="int" Nullable="false" />
+          <Property Name="bAguinaldo" Type="bit" Nullable="false" />
+          <Property Name="bActivo" Type="bit" Nullable="false" />
+          <Property Name="cUsuario_Registro" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="dFecha_Registro" Type="datetime" Nullable="false" />
+          <Property Name="cUsuario_UltimaModificacion" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="dFecha_UltimaModificacion" Type="datetime" Nullable="false" />
+          <Property Name="cUsuario_Eliminacion" Type="varchar" MaxLength="30" />
+          <Property Name="dFecha_Eliminacion" Type="datetime" />
+          <Property Name="cNombreCorto" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="bFunerario" Type="bit" Nullable="false" />
+          <Property Name="nImporteMaximo" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CAT_TabuladorAguinaldo">
+          <Key>
+            <PropertyRef Name="nAnio" />
+          </Key>
+          <Property Name="nAnio" Type="int" Nullable="false" />
+          <Property Name="nDiasSalario" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CAT_TabuladorPrimaVacacional">
+          <Key>
+            <PropertyRef Name="nAnio" />
+          </Key>
+          <Property Name="nAnio" Type="int" Nullable="false" />
+          <Property Name="nDiasSalario" Type="int" Nullable="false" />
+          <Property Name="nPorcPrima" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CAT_TipoMovimiento">
+          <Key>
+            <PropertyRef Name="nIdTipoMovimiento" />
+          </Key>
+          <Property Name="nIdTipoMovimiento" Type="int" Nullable="false" />
+          <Property Name="cTipoMovimiento" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="bRestar" Type="bit" Nullable="false" />
+          <Property Name="bActivo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CAT_Usuarios">
+          <Key>
+            <PropertyRef Name="cLogin" />
+          </Key>
+          <Property Name="cLogin" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="cNombre" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="cNombreCorto" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="cEmail" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="cPassword" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="dFechaExpiracion" Type="datetime" Nullable="false" />
+          <Property Name="nIdRol" Type="int" Nullable="false" />
+          <Property Name="dFechaAlta" Type="datetime" Nullable="false" />
+          <Property Name="dFechaBaja" Type="datetime" />
+          <Property Name="nIntentosFallidos" Type="int" Nullable="false" />
+          <Property Name="dFechaUltimoIntento" Type="datetime" Nullable="false" />
+          <Property Name="dFechaBloqueo" Type="datetime" Nullable="false" />
+          <Property Name="cFotoPerfil" Type="varchar(max)" />
+          <Property Name="bHombre" Type="bit" Nullable="false" />
+          <Property Name="bActivo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CFG_Configuracion">
+          <Key>
+            <PropertyRef Name="nIdConfig" />
+          </Key>
+          <Property Name="nIdConfig" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cNombreConfig" Type="varchar" MaxLength="400" Nullable="false" />
+          <Property Name="cMensajeConfig" Type="varchar(max)" Nullable="false" />
+          <Property Name="cDetalleConfig" Type="varchar(max)" Nullable="false" />
+          <Property Name="bActivo" Type="bit" Nullable="false" />
+          <Property Name="dFechaRegistro" Type="datetime" Nullable="false" />
+          <Property Name="dFechaModificacion" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LOG_RecuperarPassword">
+          <Key>
+            <PropertyRef Name="cID" />
+          </Key>
+          <Property Name="cID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="cLogin" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="dFechaVencimiento" Type="datetime" Nullable="false" />
+          <Property Name="dFechaGeneracion" Type="datetime" Nullable="false" />
+          <Property Name="bActivo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LOG_Sesiones">
+          <Key>
+            <PropertyRef Name="nIdSesion" />
+          </Key>
+          <Property Name="nIdSesion" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cLogin" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="dFechaInicio" Type="datetime" Nullable="false" />
+          <Property Name="dFechaFin" Type="datetime" />
+          <Property Name="cToken" Type="nvarchar" MaxLength="1000" />
+          <Property Name="bActivo" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__CAT_Empleados_CAT_Puestos">
+          <End Role="CAT_Puestos" Type="Self.CAT_Puestos" Multiplicity="1" />
+          <End Role="CAT_Empleados" Type="Self.CAT_Empleados" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_Puestos">
+              <PropertyRef Name="nIdPuesto" />
+            </Principal>
+            <Dependent Role="CAT_Empleados">
+              <PropertyRef Name="nIdPuesto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CAP_Corte_CAT_RubrosPrestamos">
+          <End Role="CAT_RubrosPrestamos" Type="Self.CAT_RubrosPrestamos" Multiplicity="1" />
+          <End Role="CAP_Corte" Type="Self.CAP_Corte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_RubrosPrestamos">
+              <PropertyRef Name="nIdRubro" />
+            </Principal>
+            <Dependent Role="CAP_Corte">
+              <PropertyRef Name="nIdRubro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CAP_Corte_CAT_Usuarios_Elimino">
+          <End Role="CAT_Usuarios" Type="Self.CAT_Usuarios" Multiplicity="0..1" />
+          <End Role="CAP_Corte" Type="Self.CAP_Corte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_Usuarios">
+              <PropertyRef Name="cLogin" />
+            </Principal>
+            <Dependent Role="CAP_Corte">
+              <PropertyRef Name="cUsuario_Eliminacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CAP_Corte_CAT_Usuarios_Modifico">
+          <End Role="CAT_Usuarios" Type="Self.CAT_Usuarios" Multiplicity="1" />
+          <End Role="CAP_Corte" Type="Self.CAP_Corte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_Usuarios">
+              <PropertyRef Name="cLogin" />
+            </Principal>
+            <Dependent Role="CAP_Corte">
+              <PropertyRef Name="cUsuario_UltimaModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CAP_Corte_CAT_Usuarios_Registro">
+          <End Role="CAT_Usuarios" Type="Self.CAT_Usuarios" Multiplicity="1" />
+          <End Role="CAP_Corte" Type="Self.CAP_Corte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_Usuarios">
+              <PropertyRef Name="cLogin" />
+            </Principal>
+            <Dependent Role="CAP_Corte">
+              <PropertyRef Name="cUsuario_Registro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CAP_CorteDetalle_CAP_Corte">
+          <End Role="CAP_Corte" Type="Self.CAP_Corte" Multiplicity="1" />
+          <End Role="CAP_CorteDetalle" Type="Self.CAP_CorteDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAP_Corte">
+              <PropertyRef Name="nIdCorte" />
+            </Principal>
+            <Dependent Role="CAP_CorteDetalle">
+              <PropertyRef Name="nIdCorte" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CAP_CorteDetalle_CAP_SolicitudPrestamo">
+          <End Role="CAP_SolicitudPrestamo" Type="Self.CAP_SolicitudPrestamo" Multiplicity="1" />
+          <End Role="CAP_CorteDetalle" Type="Self.CAP_CorteDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAP_SolicitudPrestamo">
+              <PropertyRef Name="nIdPrestamo" />
+            </Principal>
+            <Dependent Role="CAP_CorteDetalle">
+              <PropertyRef Name="nIdPrestamo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CAP_MovimientosCuenta_CAP_Corte">
+          <End Role="CAP_Corte" Type="Self.CAP_Corte" Multiplicity="0..1" />
+          <End Role="CAP_MovimientosCuenta" Type="Self.CAP_MovimientosCuenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAP_Corte">
+              <PropertyRef Name="nIdCorte" />
+            </Principal>
+            <Dependent Role="CAP_MovimientosCuenta">
+              <PropertyRef Name="nIdCorte" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CAP_MovimientosCuenta_CAP_MovimientosCuenta">
+          <End Role="CAP_MovimientosCuenta" Type="Self.CAP_MovimientosCuenta" Multiplicity="0..1" />
+          <End Role="CAP_MovimientosCuenta1" Type="Self.CAP_MovimientosCuenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAP_MovimientosCuenta">
+              <PropertyRef Name="nIdMovimiento" />
+            </Principal>
+            <Dependent Role="CAP_MovimientosCuenta1">
+              <PropertyRef Name="nIdMovimientoCancela" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CAP_MovimientosCuenta_CAP_SolicitudPrestamo">
+          <End Role="CAP_SolicitudPrestamo" Type="Self.CAP_SolicitudPrestamo" Multiplicity="0..1" />
+          <End Role="CAP_MovimientosCuenta" Type="Self.CAP_MovimientosCuenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAP_SolicitudPrestamo">
+              <PropertyRef Name="nIdPrestamo" />
+            </Principal>
+            <Dependent Role="CAP_MovimientosCuenta">
+              <PropertyRef Name="nIdPrestamo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CAP_MovimientosCuenta_CAT_CategoriasGasto">
+          <End Role="CAT_CategoriasGasto" Type="Self.CAT_CategoriasGasto" Multiplicity="1" />
+          <End Role="CAP_MovimientosCuenta" Type="Self.CAP_MovimientosCuenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_CategoriasGasto">
+              <PropertyRef Name="nIdCategoria" />
+            </Principal>
+            <Dependent Role="CAP_MovimientosCuenta">
+              <PropertyRef Name="nIdCategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CAP_MovimientosCuenta_CAT_Cuentas">
+          <End Role="CAT_Cuentas" Type="Self.CAT_Cuentas" Multiplicity="1" />
+          <End Role="CAP_MovimientosCuenta" Type="Self.CAP_MovimientosCuenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_Cuentas">
+              <PropertyRef Name="nIdCuenta" />
+            </Principal>
+            <Dependent Role="CAP_MovimientosCuenta">
+              <PropertyRef Name="nIdCuenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CAP_MovimientosCuenta_CAT_TipoMovimiento">
+          <End Role="CAT_TipoMovimiento" Type="Self.CAT_TipoMovimiento" Multiplicity="1" />
+          <End Role="CAP_MovimientosCuenta" Type="Self.CAP_MovimientosCuenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_TipoMovimiento">
+              <PropertyRef Name="nIdTipoMovimiento" />
+            </Principal>
+            <Dependent Role="CAP_MovimientosCuenta">
+              <PropertyRef Name="nIdTipoMovimiento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CAP_SolicitudPrestamo_CAT_Empleados">
+          <End Role="CAT_Empleados" Type="Self.CAT_Empleados" Multiplicity="1" />
+          <End Role="CAP_SolicitudPrestamo" Type="Self.CAP_SolicitudPrestamo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_Empleados">
+              <PropertyRef Name="nCodEmpleado" />
+            </Principal>
+            <Dependent Role="CAP_SolicitudPrestamo">
+              <PropertyRef Name="nCodEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CAP_SolicitudPrestamo_CAT_RubrosPrestamos">
+          <End Role="CAT_RubrosPrestamos" Type="Self.CAT_RubrosPrestamos" Multiplicity="1" />
+          <End Role="CAP_SolicitudPrestamo" Type="Self.CAP_SolicitudPrestamo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_RubrosPrestamos">
+              <PropertyRef Name="nIdRubro" />
+            </Principal>
+            <Dependent Role="CAP_SolicitudPrestamo">
+              <PropertyRef Name="nIdRubro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CAP_SolicitudPrestamo_CAT_Usuarios_Elimino">
+          <End Role="CAT_Usuarios" Type="Self.CAT_Usuarios" Multiplicity="0..1" />
+          <End Role="CAP_SolicitudPrestamo" Type="Self.CAP_SolicitudPrestamo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_Usuarios">
+              <PropertyRef Name="cLogin" />
+            </Principal>
+            <Dependent Role="CAP_SolicitudPrestamo">
+              <PropertyRef Name="cUsuario_Eliminacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CAP_SolicitudPrestamo_CAT_Usuarios_Modifico">
+          <End Role="CAT_Usuarios" Type="Self.CAT_Usuarios" Multiplicity="1" />
+          <End Role="CAP_SolicitudPrestamo" Type="Self.CAP_SolicitudPrestamo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_Usuarios">
+              <PropertyRef Name="cLogin" />
+            </Principal>
+            <Dependent Role="CAP_SolicitudPrestamo">
+              <PropertyRef Name="cUsuario_UltimaModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CAP_SolicitudPrestamo_CAT_Usuarios_Registro">
+          <End Role="CAT_Usuarios" Type="Self.CAT_Usuarios" Multiplicity="1" />
+          <End Role="CAP_SolicitudPrestamo" Type="Self.CAP_SolicitudPrestamo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_Usuarios">
+              <PropertyRef Name="cLogin" />
+            </Principal>
+            <Dependent Role="CAP_SolicitudPrestamo">
+              <PropertyRef Name="cUsuario_Registro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CAT_CategoriasGasto_CAT_Usuarios_Elimino">
+          <End Role="CAT_Usuarios" Type="Self.CAT_Usuarios" Multiplicity="0..1" />
+          <End Role="CAT_CategoriasGasto" Type="Self.CAT_CategoriasGasto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_Usuarios">
+              <PropertyRef Name="cLogin" />
+            </Principal>
+            <Dependent Role="CAT_CategoriasGasto">
+              <PropertyRef Name="cUsuario_Eliminacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CAT_CategoriasGasto_CAT_Usuarios_Modifico">
+          <End Role="CAT_Usuarios" Type="Self.CAT_Usuarios" Multiplicity="1" />
+          <End Role="CAT_CategoriasGasto" Type="Self.CAT_CategoriasGasto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_Usuarios">
+              <PropertyRef Name="cLogin" />
+            </Principal>
+            <Dependent Role="CAT_CategoriasGasto">
+              <PropertyRef Name="cUsuario_UltimaModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CAT_CategoriasGasto_CAT_Usuarios_Registro">
+          <End Role="CAT_Usuarios" Type="Self.CAT_Usuarios" Multiplicity="1" />
+          <End Role="CAT_CategoriasGasto" Type="Self.CAT_CategoriasGasto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_Usuarios">
+              <PropertyRef Name="cLogin" />
+            </Principal>
+            <Dependent Role="CAT_CategoriasGasto">
+              <PropertyRef Name="cUsuario_Registro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CAT_Departamentos_CAT_Usuarios_Elimino">
+          <End Role="CAT_Usuarios" Type="Self.CAT_Usuarios" Multiplicity="0..1" />
+          <End Role="CAT_Departamentos" Type="Self.CAT_Departamentos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_Usuarios">
+              <PropertyRef Name="cLogin" />
+            </Principal>
+            <Dependent Role="CAT_Departamentos">
+              <PropertyRef Name="cUsuario_Eliminacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CAT_Departamentos_CAT_Usuarios_Modifico">
+          <End Role="CAT_Usuarios" Type="Self.CAT_Usuarios" Multiplicity="1" />
+          <End Role="CAT_Departamentos" Type="Self.CAT_Departamentos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_Usuarios">
+              <PropertyRef Name="cLogin" />
+            </Principal>
+            <Dependent Role="CAT_Departamentos">
+              <PropertyRef Name="cUsuario_UltimaModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CAT_Departamentos_CAT_Usuarios_Registro">
+          <End Role="CAT_Usuarios" Type="Self.CAT_Usuarios" Multiplicity="1" />
+          <End Role="CAT_Departamentos" Type="Self.CAT_Departamentos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_Usuarios">
+              <PropertyRef Name="cLogin" />
+            </Principal>
+            <Dependent Role="CAT_Departamentos">
+              <PropertyRef Name="cUsuario_Registro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CAT_EmpleadosArchivos_CAT_Empleados">
+          <End Role="CAT_Empleados" Type="Self.CAT_Empleados" Multiplicity="1" />
+          <End Role="CAT_EmpleadosArchivos" Type="Self.CAT_EmpleadosArchivos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_Empleados">
+              <PropertyRef Name="nCodEmpleado" />
+            </Principal>
+            <Dependent Role="CAT_EmpleadosArchivos">
+              <PropertyRef Name="nCodEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CAT_EmpleadosArchivos_CAT_Usuarios_Eliminacion">
+          <End Role="CAT_Usuarios" Type="Self.CAT_Usuarios" Multiplicity="0..1" />
+          <End Role="CAT_EmpleadosArchivos" Type="Self.CAT_EmpleadosArchivos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_Usuarios">
+              <PropertyRef Name="cLogin" />
+            </Principal>
+            <Dependent Role="CAT_EmpleadosArchivos">
+              <PropertyRef Name="cUsuario_Eliminacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CAT_EmpleadosArchivos_CAT_Usuarios_Registro">
+          <End Role="CAT_Usuarios" Type="Self.CAT_Usuarios" Multiplicity="1" />
+          <End Role="CAT_EmpleadosArchivos" Type="Self.CAT_EmpleadosArchivos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_Usuarios">
+              <PropertyRef Name="cLogin" />
+            </Principal>
+            <Dependent Role="CAT_EmpleadosArchivos">
+              <PropertyRef Name="cUsuario_Registro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CAT_Navegador_CAT_Navegador">
+          <End Role="CAT_Navegador" Type="Self.CAT_Navegador" Multiplicity="0..1" />
+          <End Role="CAT_Navegador1" Type="Self.CAT_Navegador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_Navegador">
+              <PropertyRef Name="nRama" />
+            </Principal>
+            <Dependent Role="CAT_Navegador1">
+              <PropertyRef Name="nRamaPadre" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CAT_PermisoUsuario_CAT_Navegador">
+          <End Role="CAT_Navegador" Type="Self.CAT_Navegador" Multiplicity="1" />
+          <End Role="CAT_PermisoUsuario" Type="Self.CAT_PermisoUsuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_Navegador">
+              <PropertyRef Name="nRama" />
+            </Principal>
+            <Dependent Role="CAT_PermisoUsuario">
+              <PropertyRef Name="nRama" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CAT_PermisoUsuario_CAT_Usuarios">
+          <End Role="CAT_Usuarios" Type="Self.CAT_Usuarios" Multiplicity="1" />
+          <End Role="CAT_PermisoUsuario" Type="Self.CAT_PermisoUsuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_Usuarios">
+              <PropertyRef Name="cLogin" />
+            </Principal>
+            <Dependent Role="CAT_PermisoUsuario">
+              <PropertyRef Name="cLogin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CAT_Puestos_CAT_Departamentos">
+          <End Role="CAT_Departamentos" Type="Self.CAT_Departamentos" Multiplicity="1" />
+          <End Role="CAT_Puestos" Type="Self.CAT_Puestos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_Departamentos">
+              <PropertyRef Name="nIdDepartamento" />
+            </Principal>
+            <Dependent Role="CAT_Puestos">
+              <PropertyRef Name="nIdDepartamento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CAT_Puestos_CAT_Puestos">
+          <End Role="CAT_Puestos" Type="Self.CAT_Puestos" Multiplicity="0..1" />
+          <End Role="CAT_Puestos1" Type="Self.CAT_Puestos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_Puestos">
+              <PropertyRef Name="nIdPuesto" />
+            </Principal>
+            <Dependent Role="CAT_Puestos1">
+              <PropertyRef Name="nIdPuestoPadre" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CAT_Usuarios_CAT_Roles">
+          <End Role="CAT_Roles" Type="Self.CAT_Roles" Multiplicity="1" />
+          <End Role="CAT_Usuarios" Type="Self.CAT_Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_Roles">
+              <PropertyRef Name="nIdRol" />
+            </Principal>
+            <Dependent Role="CAT_Usuarios">
+              <PropertyRef Name="nIdRol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LOG_RecuperarPassword_CAT_Usuarios">
+          <End Role="CAT_Usuarios" Type="Self.CAT_Usuarios" Multiplicity="1" />
+          <End Role="LOG_RecuperarPassword" Type="Self.LOG_RecuperarPassword" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_Usuarios">
+              <PropertyRef Name="cLogin" />
+            </Principal>
+            <Dependent Role="LOG_RecuperarPassword">
+              <PropertyRef Name="cLogin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LOG_Sesiones_CAT_Usuarios">
+          <End Role="CAT_Usuarios" Type="Self.CAT_Usuarios" Multiplicity="1" />
+          <End Role="LOG_Sesiones" Type="Self.LOG_Sesiones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_Usuarios">
+              <PropertyRef Name="cLogin" />
+            </Principal>
+            <Dependent Role="LOG_Sesiones">
+              <PropertyRef Name="cLogin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BackEndModelStoreContainer">
+          <EntitySet Name="CAP_Corte" EntityType="Self.CAP_Corte" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CAP_CorteDetalle" EntityType="Self.CAP_CorteDetalle" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CAP_MovimientosCuenta" EntityType="Self.CAP_MovimientosCuenta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CAP_SolicitudPrestamo" EntityType="Self.CAP_SolicitudPrestamo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CAT_CategoriasGasto" EntityType="Self.CAT_CategoriasGasto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CAT_Cuentas" EntityType="Self.CAT_Cuentas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CAT_Departamentos" EntityType="Self.CAT_Departamentos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CAT_Empleados" EntityType="Self.CAT_Empleados" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CAT_EmpleadosArchivos" EntityType="Self.CAT_EmpleadosArchivos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CAT_Navegador" EntityType="Self.CAT_Navegador" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CAT_PermisoUsuario" EntityType="Self.CAT_PermisoUsuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CAT_Puestos" EntityType="Self.CAT_Puestos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CAT_Roles" EntityType="Self.CAT_Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CAT_RubrosPrestamos" EntityType="Self.CAT_RubrosPrestamos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CAT_TabuladorAguinaldo" EntityType="Self.CAT_TabuladorAguinaldo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CAT_TabuladorPrimaVacacional" EntityType="Self.CAT_TabuladorPrimaVacacional" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CAT_TipoMovimiento" EntityType="Self.CAT_TipoMovimiento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CAT_Usuarios" EntityType="Self.CAT_Usuarios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CFG_Configuracion" EntityType="Self.CFG_Configuracion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LOG_RecuperarPassword" EntityType="Self.LOG_RecuperarPassword" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LOG_Sesiones" EntityType="Self.LOG_Sesiones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CAT_Puestos_respaldo" EntityType="Self.CAT_Puestos_respaldo" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [CAT_Puestos_respaldo].[nIdPuesto] AS [nIdPuesto], 
+    [CAT_Puestos_respaldo].[nIdPuestoPadre] AS [nIdPuestoPadre], 
+    [CAT_Puestos_respaldo].[cPuesto] AS [cPuesto], 
+    [CAT_Puestos_respaldo].[nSueldo] AS [nSueldo], 
+    [CAT_Puestos_respaldo].[nIdDepartamento] AS [nIdDepartamento], 
+    [CAT_Puestos_respaldo].[bActivo] AS [bActivo], 
+    [CAT_Puestos_respaldo].[cUsuario_Registro] AS [cUsuario_Registro], 
+    [CAT_Puestos_respaldo].[dFecha_Registro] AS [dFecha_Registro], 
+    [CAT_Puestos_respaldo].[cUsuario_UltimaModificacion] AS [cUsuario_UltimaModificacion], 
+    [CAT_Puestos_respaldo].[dFecha_UltimaModificacion] AS [dFecha_UltimaModificacion], 
+    [CAT_Puestos_respaldo].[cUsuario_Eliminacion] AS [cUsuario_Eliminacion], 
+    [CAT_Puestos_respaldo].[dFecha_Eliminacion] AS [dFecha_Eliminacion]
+    FROM [dbo].[CAT_Puestos_respaldo] AS [CAT_Puestos_respaldo]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__CAT_Empleados_CAT_Puestos" Association="Self.FK__CAT_Empleados_CAT_Puestos">
+            <End Role="CAT_Puestos" EntitySet="CAT_Puestos" />
+            <End Role="CAT_Empleados" EntitySet="CAT_Empleados" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CAP_Corte_CAT_RubrosPrestamos" Association="Self.FK_CAP_Corte_CAT_RubrosPrestamos">
+            <End Role="CAT_RubrosPrestamos" EntitySet="CAT_RubrosPrestamos" />
+            <End Role="CAP_Corte" EntitySet="CAP_Corte" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CAP_Corte_CAT_Usuarios_Elimino" Association="Self.FK_CAP_Corte_CAT_Usuarios_Elimino">
+            <End Role="CAT_Usuarios" EntitySet="CAT_Usuarios" />
+            <End Role="CAP_Corte" EntitySet="CAP_Corte" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CAP_Corte_CAT_Usuarios_Modifico" Association="Self.FK_CAP_Corte_CAT_Usuarios_Modifico">
+            <End Role="CAT_Usuarios" EntitySet="CAT_Usuarios" />
+            <End Role="CAP_Corte" EntitySet="CAP_Corte" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CAP_Corte_CAT_Usuarios_Registro" Association="Self.FK_CAP_Corte_CAT_Usuarios_Registro">
+            <End Role="CAT_Usuarios" EntitySet="CAT_Usuarios" />
+            <End Role="CAP_Corte" EntitySet="CAP_Corte" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CAP_CorteDetalle_CAP_Corte" Association="Self.FK_CAP_CorteDetalle_CAP_Corte">
+            <End Role="CAP_Corte" EntitySet="CAP_Corte" />
+            <End Role="CAP_CorteDetalle" EntitySet="CAP_CorteDetalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CAP_CorteDetalle_CAP_SolicitudPrestamo" Association="Self.FK_CAP_CorteDetalle_CAP_SolicitudPrestamo">
+            <End Role="CAP_SolicitudPrestamo" EntitySet="CAP_SolicitudPrestamo" />
+            <End Role="CAP_CorteDetalle" EntitySet="CAP_CorteDetalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CAP_MovimientosCuenta_CAP_Corte" Association="Self.FK_CAP_MovimientosCuenta_CAP_Corte">
+            <End Role="CAP_Corte" EntitySet="CAP_Corte" />
+            <End Role="CAP_MovimientosCuenta" EntitySet="CAP_MovimientosCuenta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CAP_MovimientosCuenta_CAP_MovimientosCuenta" Association="Self.FK_CAP_MovimientosCuenta_CAP_MovimientosCuenta">
+            <End Role="CAP_MovimientosCuenta" EntitySet="CAP_MovimientosCuenta" />
+            <End Role="CAP_MovimientosCuenta1" EntitySet="CAP_MovimientosCuenta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CAP_MovimientosCuenta_CAP_SolicitudPrestamo" Association="Self.FK_CAP_MovimientosCuenta_CAP_SolicitudPrestamo">
+            <End Role="CAP_SolicitudPrestamo" EntitySet="CAP_SolicitudPrestamo" />
+            <End Role="CAP_MovimientosCuenta" EntitySet="CAP_MovimientosCuenta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CAP_MovimientosCuenta_CAT_CategoriasGasto" Association="Self.FK_CAP_MovimientosCuenta_CAT_CategoriasGasto">
+            <End Role="CAT_CategoriasGasto" EntitySet="CAT_CategoriasGasto" />
+            <End Role="CAP_MovimientosCuenta" EntitySet="CAP_MovimientosCuenta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CAP_MovimientosCuenta_CAT_Cuentas" Association="Self.FK_CAP_MovimientosCuenta_CAT_Cuentas">
+            <End Role="CAT_Cuentas" EntitySet="CAT_Cuentas" />
+            <End Role="CAP_MovimientosCuenta" EntitySet="CAP_MovimientosCuenta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CAP_MovimientosCuenta_CAT_TipoMovimiento" Association="Self.FK_CAP_MovimientosCuenta_CAT_TipoMovimiento">
+            <End Role="CAT_TipoMovimiento" EntitySet="CAT_TipoMovimiento" />
+            <End Role="CAP_MovimientosCuenta" EntitySet="CAP_MovimientosCuenta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CAP_SolicitudPrestamo_CAT_Empleados" Association="Self.FK_CAP_SolicitudPrestamo_CAT_Empleados">
+            <End Role="CAT_Empleados" EntitySet="CAT_Empleados" />
+            <End Role="CAP_SolicitudPrestamo" EntitySet="CAP_SolicitudPrestamo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CAP_SolicitudPrestamo_CAT_RubrosPrestamos" Association="Self.FK_CAP_SolicitudPrestamo_CAT_RubrosPrestamos">
+            <End Role="CAT_RubrosPrestamos" EntitySet="CAT_RubrosPrestamos" />
+            <End Role="CAP_SolicitudPrestamo" EntitySet="CAP_SolicitudPrestamo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CAP_SolicitudPrestamo_CAT_Usuarios_Elimino" Association="Self.FK_CAP_SolicitudPrestamo_CAT_Usuarios_Elimino">
+            <End Role="CAT_Usuarios" EntitySet="CAT_Usuarios" />
+            <End Role="CAP_SolicitudPrestamo" EntitySet="CAP_SolicitudPrestamo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CAP_SolicitudPrestamo_CAT_Usuarios_Modifico" Association="Self.FK_CAP_SolicitudPrestamo_CAT_Usuarios_Modifico">
+            <End Role="CAT_Usuarios" EntitySet="CAT_Usuarios" />
+            <End Role="CAP_SolicitudPrestamo" EntitySet="CAP_SolicitudPrestamo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CAP_SolicitudPrestamo_CAT_Usuarios_Registro" Association="Self.FK_CAP_SolicitudPrestamo_CAT_Usuarios_Registro">
+            <End Role="CAT_Usuarios" EntitySet="CAT_Usuarios" />
+            <End Role="CAP_SolicitudPrestamo" EntitySet="CAP_SolicitudPrestamo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CAT_CategoriasGasto_CAT_Usuarios_Elimino" Association="Self.FK_CAT_CategoriasGasto_CAT_Usuarios_Elimino">
+            <End Role="CAT_Usuarios" EntitySet="CAT_Usuarios" />
+            <End Role="CAT_CategoriasGasto" EntitySet="CAT_CategoriasGasto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CAT_CategoriasGasto_CAT_Usuarios_Modifico" Association="Self.FK_CAT_CategoriasGasto_CAT_Usuarios_Modifico">
+            <End Role="CAT_Usuarios" EntitySet="CAT_Usuarios" />
+            <End Role="CAT_CategoriasGasto" EntitySet="CAT_CategoriasGasto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CAT_CategoriasGasto_CAT_Usuarios_Registro" Association="Self.FK_CAT_CategoriasGasto_CAT_Usuarios_Registro">
+            <End Role="CAT_Usuarios" EntitySet="CAT_Usuarios" />
+            <End Role="CAT_CategoriasGasto" EntitySet="CAT_CategoriasGasto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CAT_Departamentos_CAT_Usuarios_Elimino" Association="Self.FK_CAT_Departamentos_CAT_Usuarios_Elimino">
+            <End Role="CAT_Usuarios" EntitySet="CAT_Usuarios" />
+            <End Role="CAT_Departamentos" EntitySet="CAT_Departamentos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CAT_Departamentos_CAT_Usuarios_Modifico" Association="Self.FK_CAT_Departamentos_CAT_Usuarios_Modifico">
+            <End Role="CAT_Usuarios" EntitySet="CAT_Usuarios" />
+            <End Role="CAT_Departamentos" EntitySet="CAT_Departamentos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CAT_Departamentos_CAT_Usuarios_Registro" Association="Self.FK_CAT_Departamentos_CAT_Usuarios_Registro">
+            <End Role="CAT_Usuarios" EntitySet="CAT_Usuarios" />
+            <End Role="CAT_Departamentos" EntitySet="CAT_Departamentos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CAT_EmpleadosArchivos_CAT_Empleados" Association="Self.FK_CAT_EmpleadosArchivos_CAT_Empleados">
+            <End Role="CAT_Empleados" EntitySet="CAT_Empleados" />
+            <End Role="CAT_EmpleadosArchivos" EntitySet="CAT_EmpleadosArchivos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CAT_EmpleadosArchivos_CAT_Usuarios_Eliminacion" Association="Self.FK_CAT_EmpleadosArchivos_CAT_Usuarios_Eliminacion">
+            <End Role="CAT_Usuarios" EntitySet="CAT_Usuarios" />
+            <End Role="CAT_EmpleadosArchivos" EntitySet="CAT_EmpleadosArchivos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CAT_EmpleadosArchivos_CAT_Usuarios_Registro" Association="Self.FK_CAT_EmpleadosArchivos_CAT_Usuarios_Registro">
+            <End Role="CAT_Usuarios" EntitySet="CAT_Usuarios" />
+            <End Role="CAT_EmpleadosArchivos" EntitySet="CAT_EmpleadosArchivos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CAT_Navegador_CAT_Navegador" Association="Self.FK_CAT_Navegador_CAT_Navegador">
+            <End Role="CAT_Navegador" EntitySet="CAT_Navegador" />
+            <End Role="CAT_Navegador1" EntitySet="CAT_Navegador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CAT_PermisoUsuario_CAT_Navegador" Association="Self.FK_CAT_PermisoUsuario_CAT_Navegador">
+            <End Role="CAT_Navegador" EntitySet="CAT_Navegador" />
+            <End Role="CAT_PermisoUsuario" EntitySet="CAT_PermisoUsuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CAT_PermisoUsuario_CAT_Usuarios" Association="Self.FK_CAT_PermisoUsuario_CAT_Usuarios">
+            <End Role="CAT_Usuarios" EntitySet="CAT_Usuarios" />
+            <End Role="CAT_PermisoUsuario" EntitySet="CAT_PermisoUsuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CAT_Puestos_CAT_Departamentos" Association="Self.FK_CAT_Puestos_CAT_Departamentos">
+            <End Role="CAT_Departamentos" EntitySet="CAT_Departamentos" />
+            <End Role="CAT_Puestos" EntitySet="CAT_Puestos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CAT_Puestos_CAT_Puestos" Association="Self.FK_CAT_Puestos_CAT_Puestos">
+            <End Role="CAT_Puestos" EntitySet="CAT_Puestos" />
+            <End Role="CAT_Puestos1" EntitySet="CAT_Puestos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CAT_Usuarios_CAT_Roles" Association="Self.FK_CAT_Usuarios_CAT_Roles">
+            <End Role="CAT_Roles" EntitySet="CAT_Roles" />
+            <End Role="CAT_Usuarios" EntitySet="CAT_Usuarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LOG_RecuperarPassword_CAT_Usuarios" Association="Self.FK_LOG_RecuperarPassword_CAT_Usuarios">
+            <End Role="CAT_Usuarios" EntitySet="CAT_Usuarios" />
+            <End Role="LOG_RecuperarPassword" EntitySet="LOG_RecuperarPassword" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LOG_Sesiones_CAT_Usuarios" Association="Self.FK_LOG_Sesiones_CAT_Usuarios">
+            <End Role="CAT_Usuarios" EntitySet="CAT_Usuarios" />
+            <End Role="LOG_Sesiones" EntitySet="LOG_Sesiones" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BackEndModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CAP_Corte">
+          <Key>
+            <PropertyRef Name="nIdCorte" />
+          </Key>
+          <Property Name="nIdCorte" Type="Int32" Nullable="false" />
+          <Property Name="nIdRubro" Type="Int32" Nullable="false" />
+          <Property Name="dFechaCorte" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="nTotal" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="bPagado" Type="Boolean" Nullable="false" />
+          <Property Name="bActivo" Type="Boolean" Nullable="false" />
+          <Property Name="cUsuario_Registro" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dFecha_Registro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="cUsuario_UltimaModificacion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dFecha_UltimaModificacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="cUsuario_Eliminacion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="dFecha_Eliminacion" Type="DateTime" Precision="3" />
+          <Property Name="nVersion" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="Rubro" Relationship="Self.FK_CAP_Corte_CAT_RubrosPrestamos" FromRole="CAP_Corte" ToRole="CAT_RubrosPrestamos" />
+          <NavigationProperty Name="CAT_Usuarios" Relationship="Self.FK_CAP_Corte_CAT_Usuarios_Elimino" FromRole="CAP_Corte" ToRole="CAT_Usuarios" />
+          <NavigationProperty Name="CAT_Usuarios1" Relationship="Self.FK_CAP_Corte_CAT_Usuarios_Modifico" FromRole="CAP_Corte" ToRole="CAT_Usuarios" />
+          <NavigationProperty Name="CAT_Usuarios2" Relationship="Self.FK_CAP_Corte_CAT_Usuarios_Registro" FromRole="CAP_Corte" ToRole="CAT_Usuarios" />
+          <NavigationProperty Name="CorteDetalle" Relationship="Self.FK_CAP_CorteDetalle_CAP_Corte" FromRole="CAP_Corte" ToRole="CAP_CorteDetalle" />
+          <NavigationProperty Name="CAP_MovimientosCuenta" Relationship="Self.FK_CAP_MovimientosCuenta_CAP_Corte" FromRole="CAP_Corte" ToRole="CAP_MovimientosCuenta" />
+        </EntityType>
+        <EntityType Name="CAP_CorteDetalle">
+          <Key>
+            <PropertyRef Name="nIdCorte" />
+            <PropertyRef Name="nIdPrestamo" />
+          </Key>
+          <Property Name="nIdCorte" Type="Int32" Nullable="false" />
+          <Property Name="nIdPrestamo" Type="Int32" Nullable="false" />
+          <Property Name="nImporte" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <NavigationProperty Name="Corte" Relationship="Self.FK_CAP_CorteDetalle_CAP_Corte" FromRole="CAP_CorteDetalle" ToRole="CAP_Corte" />
+          <NavigationProperty Name="SolicitudPrestamo" Relationship="Self.FK_CAP_CorteDetalle_CAP_SolicitudPrestamo" FromRole="CAP_CorteDetalle" ToRole="CAP_SolicitudPrestamo" />
+        </EntityType>
+        <EntityType Name="CAP_MovimientosCuenta">
+          <Key>
+            <PropertyRef Name="nIdMovimiento" />
+          </Key>
+          <Property Name="nIdMovimiento" Type="Int32" Nullable="false" />
+          <Property Name="nIdCuenta" Type="Int32" Nullable="false" />
+          <Property Name="nIdTipoMovimiento" Type="Int32" Nullable="false" />
+          <Property Name="nIdCategoria" Type="Int32" Nullable="false" />
+          <Property Name="nIdCorte" Type="Int32" />
+          <Property Name="nIdPrestamo" Type="Int32" />
+          <Property Name="nIdMovimientoCancela" Type="Int32" />
+          <Property Name="nImporte" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="cObservaciones" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cRutaDocumento" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="bActivo" Type="Boolean" Nullable="false" />
+          <Property Name="cUsuario_Registro" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dFecha_Registro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="cUsuario_Eliminacion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="dFecha_Eliminacion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Corte" Relationship="Self.FK_CAP_MovimientosCuenta_CAP_Corte" FromRole="CAP_MovimientosCuenta" ToRole="CAP_Corte" />
+          <NavigationProperty Name="MovimientosCuentaCancela" Relationship="Self.FK_CAP_MovimientosCuenta_CAP_MovimientosCuenta" FromRole="CAP_MovimientosCuenta" ToRole="CAP_MovimientosCuenta1" />
+          <NavigationProperty Name="MovimientoCuentaCancela" Relationship="Self.FK_CAP_MovimientosCuenta_CAP_MovimientosCuenta" FromRole="CAP_MovimientosCuenta1" ToRole="CAP_MovimientosCuenta" />
+          <NavigationProperty Name="CAP_SolicitudPrestamo" Relationship="Self.FK_CAP_MovimientosCuenta_CAP_SolicitudPrestamo" FromRole="CAP_MovimientosCuenta" ToRole="CAP_SolicitudPrestamo" />
+          <NavigationProperty Name="CategoriaGasto" Relationship="Self.FK_CAP_MovimientosCuenta_CAT_CategoriasGasto" FromRole="CAP_MovimientosCuenta" ToRole="CAT_CategoriasGasto" />
+          <NavigationProperty Name="Cuenta" Relationship="Self.FK_CAP_MovimientosCuenta_CAT_Cuentas" FromRole="CAP_MovimientosCuenta" ToRole="CAT_Cuentas" />
+          <NavigationProperty Name="TipoMovimiento" Relationship="Self.FK_CAP_MovimientosCuenta_CAT_TipoMovimiento" FromRole="CAP_MovimientosCuenta" ToRole="CAT_TipoMovimiento" />
+        </EntityType>
+        <EntityType Name="CAP_SolicitudPrestamo">
+          <Key>
+            <PropertyRef Name="nIdPrestamo" />
+          </Key>
+          <Property Name="nIdPrestamo" Type="Int32" Nullable="false" />
+          <Property Name="nCodEmpleado" Type="Int32" Nullable="false" />
+          <Property Name="nIdRubro" Type="Int32" Nullable="false" />
+          <Property Name="nImporte" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="nSaldo" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="dFechaCobro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="cRutaArchivoINE_Frente" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="cRutaArchivoINE_Atras" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="cRutaPagare" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="cRutaCheque" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="nVersion" Type="Int16" Nullable="false" />
+          <Property Name="bConCorte" Type="Boolean" Nullable="false" />
+          <Property Name="bActivo" Type="Boolean" Nullable="false" />
+          <Property Name="cUsuario_Registro" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dFecha_Registro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="cUsuario_UltimaModificacion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dFecha_UltimaModificacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="cUsuario_Eliminacion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="dFecha_Eliminacion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="CorteDetalle" Relationship="Self.FK_CAP_CorteDetalle_CAP_SolicitudPrestamo" FromRole="CAP_SolicitudPrestamo" ToRole="CAP_CorteDetalle" />
+          <NavigationProperty Name="CAP_MovimientosCuenta" Relationship="Self.FK_CAP_MovimientosCuenta_CAP_SolicitudPrestamo" FromRole="CAP_SolicitudPrestamo" ToRole="CAP_MovimientosCuenta" />
+          <NavigationProperty Name="Empleado" Relationship="Self.FK_CAP_SolicitudPrestamo_CAT_Empleados" FromRole="CAP_SolicitudPrestamo" ToRole="CAT_Empleados" />
+          <NavigationProperty Name="TipoPrestamo" Relationship="Self.FK_CAP_SolicitudPrestamo_CAT_RubrosPrestamos" FromRole="CAP_SolicitudPrestamo" ToRole="CAT_RubrosPrestamos" />
+          <NavigationProperty Name="CAT_Usuarios" Relationship="Self.FK_CAP_SolicitudPrestamo_CAT_Usuarios_Elimino" FromRole="CAP_SolicitudPrestamo" ToRole="CAT_Usuarios" />
+          <NavigationProperty Name="CAT_Usuarios1" Relationship="Self.FK_CAP_SolicitudPrestamo_CAT_Usuarios_Modifico" FromRole="CAP_SolicitudPrestamo" ToRole="CAT_Usuarios" />
+          <NavigationProperty Name="CAT_Usuarios2" Relationship="Self.FK_CAP_SolicitudPrestamo_CAT_Usuarios_Registro" FromRole="CAP_SolicitudPrestamo" ToRole="CAT_Usuarios" />
+        </EntityType>
+        <EntityType Name="CAT_CategoriasGasto">
+          <Key>
+            <PropertyRef Name="nIdCategoria" />
+          </Key>
+          <Property Name="nIdCategoria" Type="Int32" Nullable="false" />
+          <Property Name="cCategoria" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="bActivo" Type="Boolean" Nullable="false" />
+          <Property Name="cUsuario_Registro" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dFecha_Registro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="cUsuario_UltimaModificacion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dFecha_UltimaModificacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="cUsuario_Eliminacion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="dFecha_Eliminacion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="CAP_MovimientosCuenta" Relationship="Self.FK_CAP_MovimientosCuenta_CAT_CategoriasGasto" FromRole="CAT_CategoriasGasto" ToRole="CAP_MovimientosCuenta" />
+          <NavigationProperty Name="CAT_Usuarios" Relationship="Self.FK_CAT_CategoriasGasto_CAT_Usuarios_Elimino" FromRole="CAT_CategoriasGasto" ToRole="CAT_Usuarios" />
+          <NavigationProperty Name="CAT_Usuarios1" Relationship="Self.FK_CAT_CategoriasGasto_CAT_Usuarios_Modifico" FromRole="CAT_CategoriasGasto" ToRole="CAT_Usuarios" />
+          <NavigationProperty Name="CAT_Usuarios2" Relationship="Self.FK_CAT_CategoriasGasto_CAT_Usuarios_Registro" FromRole="CAT_CategoriasGasto" ToRole="CAT_Usuarios" />
+        </EntityType>
+        <EntityType Name="CAT_Cuentas">
+          <Key>
+            <PropertyRef Name="nIdCuenta" />
+          </Key>
+          <Property Name="nIdCuenta" Type="Int32" Nullable="false" />
+          <Property Name="cCuenta" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nSaldo" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="bActivo" Type="Boolean" Nullable="false" />
+          <Property Name="cUsuario_Registro" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dFecha_Registro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="cUsuario_UltimaModificacion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dFecha_UltimaModificacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="cUsuario_Eliminacion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="dFecha_Eliminacion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="CAP_MovimientosCuenta" Relationship="Self.FK_CAP_MovimientosCuenta_CAT_Cuentas" FromRole="CAT_Cuentas" ToRole="CAP_MovimientosCuenta" />
+        </EntityType>
+        <EntityType Name="CAT_Departamentos">
+          <Key>
+            <PropertyRef Name="nIdDepartamento" />
+          </Key>
+          <Property Name="nIdDepartamento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cDepartamento" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="bActivo" Type="Boolean" Nullable="false" />
+          <Property Name="cUsuario_Registro" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dFecha_Registro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="cUsuario_UltimaModificacion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dFecha_UltimaModificacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="cUsuario_Eliminacion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="dFecha_Eliminacion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="CAT_Usuarios" Relationship="Self.FK_CAT_Departamentos_CAT_Usuarios_Elimino" FromRole="CAT_Departamentos" ToRole="CAT_Usuarios" />
+          <NavigationProperty Name="CAT_Usuarios1" Relationship="Self.FK_CAT_Departamentos_CAT_Usuarios_Modifico" FromRole="CAT_Departamentos" ToRole="CAT_Usuarios" />
+          <NavigationProperty Name="CAT_Usuarios2" Relationship="Self.FK_CAT_Departamentos_CAT_Usuarios_Registro" FromRole="CAT_Departamentos" ToRole="CAT_Usuarios" />
+          <NavigationProperty Name="CAT_Puestos" Relationship="Self.FK_CAT_Puestos_CAT_Departamentos" FromRole="CAT_Departamentos" ToRole="CAT_Puestos" />
+        </EntityType>
+        <EntityType Name="CAT_Empleados">
+          <Key>
+            <PropertyRef Name="nCodEmpleado" />
+          </Key>
+          <Property Name="nCodEmpleado" Type="Int32" Nullable="false" />
+          <Property Name="cNombre" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nIdPuesto" Type="Int32" Nullable="false" />
+          <Property Name="dFechaIngreso" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="nEstatusCrecimiento" Type="Int16" Nullable="false" />
+          <Property Name="cObservaciones" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="bActivo" Type="Boolean" Nullable="false" />
+          <Property Name="cUsuario_Registro" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dFecha_Registro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="cUsuario_UltimaModificacion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dFecha_UltimaModificacion" Type="DateTime" Precision="3" />
+          <Property Name="cUsuario_Eliminacion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="dFecha_Eliminacion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="SolicitudesDePrestamo" Relationship="Self.FK_CAP_SolicitudPrestamo_CAT_Empleados" FromRole="CAT_Empleados" ToRole="CAP_SolicitudPrestamo" />
+          <NavigationProperty Name="Puesto" Relationship="Self.FK__CAT_Empleados_CAT_Puestos" FromRole="CAT_Empleados" ToRole="CAT_Puestos" />
+          <NavigationProperty Name="Archivos" Relationship="Self.FK_CAT_EmpleadosArchivos_CAT_Empleados" FromRole="CAT_Empleados" ToRole="CAT_EmpleadosArchivos" />
+        </EntityType>
+        <EntityType Name="CAT_EmpleadosArchivos">
+          <Key>
+            <PropertyRef Name="nIdArchivoEmpleado" />
+          </Key>
+          <Property Name="nIdArchivoEmpleado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nCodEmpleado" Type="Int32" Nullable="false" />
+          <Property Name="cRutaArchivo" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cNombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="bActivo" Type="Boolean" Nullable="false" />
+          <Property Name="cUsuario_Registro" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dFecha_Registro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="cUsuario_Eliminacion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="dFecha_Eliminacion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="CAT_Empleados" Relationship="Self.FK_CAT_EmpleadosArchivos_CAT_Empleados" FromRole="CAT_EmpleadosArchivos" ToRole="CAT_Empleados" />
+          <NavigationProperty Name="CAT_Usuarios" Relationship="Self.FK_CAT_EmpleadosArchivos_CAT_Usuarios_Eliminacion" FromRole="CAT_EmpleadosArchivos" ToRole="CAT_Usuarios" />
+          <NavigationProperty Name="CAT_Usuarios1" Relationship="Self.FK_CAT_EmpleadosArchivos_CAT_Usuarios_Registro" FromRole="CAT_EmpleadosArchivos" ToRole="CAT_Usuarios" />
+        </EntityType>
+        <EntityType Name="CAT_Navegador">
+          <Key>
+            <PropertyRef Name="nRama" />
+          </Key>
+          <Property Name="nRama" Type="Int32" Nullable="false" />
+          <Property Name="nRamaPadre" Type="Int32" />
+          <Property Name="nOrden" Type="Int32" Nullable="false" />
+          <Property Name="cNombreRama" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cOpcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cRuta" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="bActivo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="NavegadorHijos" Relationship="Self.FK_CAT_Navegador_CAT_Navegador" FromRole="CAT_Navegador" ToRole="CAT_Navegador1" />
+          <NavigationProperty Name="NavegadorPadre" Relationship="Self.FK_CAT_Navegador_CAT_Navegador" FromRole="CAT_Navegador1" ToRole="CAT_Navegador" />
+          <NavigationProperty Name="Permisos" Relationship="Self.FK_CAT_PermisoUsuario_CAT_Navegador" FromRole="CAT_Navegador" ToRole="CAT_PermisoUsuario" />
+        </EntityType>
+        <EntityType Name="CAT_PermisoUsuario">
+          <Key>
+            <PropertyRef Name="cLogin" />
+            <PropertyRef Name="nRama" />
+          </Key>
+          <Property Name="cLogin" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nRama" Type="Int32" Nullable="false" />
+          <Property Name="bActivo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Navegador" Relationship="Self.FK_CAT_PermisoUsuario_CAT_Navegador" FromRole="CAT_PermisoUsuario" ToRole="CAT_Navegador" />
+          <NavigationProperty Name="CAT_Usuarios" Relationship="Self.FK_CAT_PermisoUsuario_CAT_Usuarios" FromRole="CAT_PermisoUsuario" ToRole="CAT_Usuarios" />
+        </EntityType>
+        <EntityType Name="CAT_Puestos">
+          <Key>
+            <PropertyRef Name="nIdPuesto" />
+          </Key>
+          <Property Name="nIdPuesto" Type="Int32" Nullable="false" />
+          <Property Name="nIdPuestoPadre" Type="Int32" />
+          <Property Name="cPuesto" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nSueldo" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="nIdDepartamento" Type="Int32" Nullable="false" />
+          <Property Name="bActivo" Type="Boolean" Nullable="false" />
+          <Property Name="cUsuario_Registro" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dFecha_Registro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="cUsuario_UltimaModificacion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dFecha_UltimaModificacion" Type="DateTime" Precision="3" />
+          <Property Name="cUsuario_Eliminacion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="dFecha_Eliminacion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Departamento" Relationship="Self.FK_CAT_Puestos_CAT_Departamentos" FromRole="CAT_Puestos" ToRole="CAT_Departamentos" />
+          <NavigationProperty Name="Empleados" Relationship="Self.FK__CAT_Empleados_CAT_Puestos" FromRole="CAT_Puestos" ToRole="CAT_Empleados" />
+          <NavigationProperty Name="PuestosHijos" Relationship="Self.FK_CAT_Puestos_CAT_Puestos" FromRole="CAT_Puestos" ToRole="CAT_Puestos1" />
+          <NavigationProperty Name="PuestoPadre" Relationship="Self.FK_CAT_Puestos_CAT_Puestos" FromRole="CAT_Puestos1" ToRole="CAT_Puestos" />
+        </EntityType>
+        <EntityType Name="CAT_Roles">
+          <Key>
+            <PropertyRef Name="nIdRol" />
+          </Key>
+          <Property Name="nIdRol" Type="Int32" Nullable="false" />
+          <Property Name="cNombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="CAT_Usuarios" Relationship="Self.FK_CAT_Usuarios_CAT_Roles" FromRole="CAT_Roles" ToRole="CAT_Usuarios" />
+        </EntityType>
+        <EntityType Name="CAT_RubrosPrestamos">
+          <Key>
+            <PropertyRef Name="nIdRubro" />
+          </Key>
+          <Property Name="nIdRubro" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cRubro" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="bMensual" Type="Boolean" Nullable="false" />
+          <Property Name="nMesCorte" Type="Int32" Nullable="false" />
+          <Property Name="nDiaCorte" Type="Int32" Nullable="false" />
+          <Property Name="bAguinaldo" Type="Boolean" Nullable="false" />
+          <Property Name="bActivo" Type="Boolean" Nullable="false" />
+          <Property Name="cUsuario_Registro" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dFecha_Registro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="cUsuario_UltimaModificacion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dFecha_UltimaModificacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="cUsuario_Eliminacion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="dFecha_Eliminacion" Type="DateTime" Precision="3" />
+          <Property Name="cNombreCorto" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="bFunerario" Type="Boolean" Nullable="false" />
+          <Property Name="nImporteMaximo" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <NavigationProperty Name="CAP_Corte" Relationship="Self.FK_CAP_Corte_CAT_RubrosPrestamos" FromRole="CAT_RubrosPrestamos" ToRole="CAP_Corte" />
+          <NavigationProperty Name="CAP_SolicitudPrestamo" Relationship="Self.FK_CAP_SolicitudPrestamo_CAT_RubrosPrestamos" FromRole="CAT_RubrosPrestamos" ToRole="CAP_SolicitudPrestamo" />
+        </EntityType>
+        <EntityType Name="CAT_TabuladorAguinaldo">
+          <Key>
+            <PropertyRef Name="nAnio" />
+          </Key>
+          <Property Name="nAnio" Type="Int32" Nullable="false" />
+          <Property Name="nDiasSalario" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CAT_TabuladorPrimaVacacional">
+          <Key>
+            <PropertyRef Name="nAnio" />
+          </Key>
+          <Property Name="nAnio" Type="Int32" Nullable="false" />
+          <Property Name="nDiasSalario" Type="Int32" Nullable="false" />
+          <Property Name="nPorcPrima" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CAT_TipoMovimiento">
+          <Key>
+            <PropertyRef Name="nIdTipoMovimiento" />
+          </Key>
+          <Property Name="nIdTipoMovimiento" Type="Int32" Nullable="false" />
+          <Property Name="cTipoMovimiento" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="bRestar" Type="Boolean" Nullable="false" />
+          <Property Name="bActivo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="CAP_MovimientosCuenta" Relationship="Self.FK_CAP_MovimientosCuenta_CAT_TipoMovimiento" FromRole="CAT_TipoMovimiento" ToRole="CAP_MovimientosCuenta" />
+        </EntityType>
+        <EntityType Name="CAT_Usuarios">
+          <Key>
+            <PropertyRef Name="cLogin" />
+          </Key>
+          <Property Name="cLogin" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cNombre" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cNombreCorto" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cEmail" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cPassword" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dFechaExpiracion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="nIdRol" Type="Int32" Nullable="false" />
+          <Property Name="dFechaAlta" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="dFechaBaja" Type="DateTime" Precision="3" />
+          <Property Name="nIntentosFallidos" Type="Int32" Nullable="false" />
+          <Property Name="dFechaUltimoIntento" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="dFechaBloqueo" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="cFotoPerfil" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="bHombre" Type="Boolean" Nullable="false" />
+          <Property Name="bActivo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="CAP_Corte" Relationship="Self.FK_CAP_Corte_CAT_Usuarios_Elimino" FromRole="CAT_Usuarios" ToRole="CAP_Corte" />
+          <NavigationProperty Name="CAP_Corte1" Relationship="Self.FK_CAP_Corte_CAT_Usuarios_Modifico" FromRole="CAT_Usuarios" ToRole="CAP_Corte" />
+          <NavigationProperty Name="CAP_Corte2" Relationship="Self.FK_CAP_Corte_CAT_Usuarios_Registro" FromRole="CAT_Usuarios" ToRole="CAP_Corte" />
+          <NavigationProperty Name="CAP_SolicitudPrestamo" Relationship="Self.FK_CAP_SolicitudPrestamo_CAT_Usuarios_Elimino" FromRole="CAT_Usuarios" ToRole="CAP_SolicitudPrestamo" />
+          <NavigationProperty Name="CAP_SolicitudPrestamo1" Relationship="Self.FK_CAP_SolicitudPrestamo_CAT_Usuarios_Modifico" FromRole="CAT_Usuarios" ToRole="CAP_SolicitudPrestamo" />
+          <NavigationProperty Name="CAP_SolicitudPrestamo2" Relationship="Self.FK_CAP_SolicitudPrestamo_CAT_Usuarios_Registro" FromRole="CAT_Usuarios" ToRole="CAP_SolicitudPrestamo" />
+          <NavigationProperty Name="CAT_CategoriasGasto" Relationship="Self.FK_CAT_CategoriasGasto_CAT_Usuarios_Elimino" FromRole="CAT_Usuarios" ToRole="CAT_CategoriasGasto" />
+          <NavigationProperty Name="CAT_CategoriasGasto1" Relationship="Self.FK_CAT_CategoriasGasto_CAT_Usuarios_Modifico" FromRole="CAT_Usuarios" ToRole="CAT_CategoriasGasto" />
+          <NavigationProperty Name="CAT_CategoriasGasto2" Relationship="Self.FK_CAT_CategoriasGasto_CAT_Usuarios_Registro" FromRole="CAT_Usuarios" ToRole="CAT_CategoriasGasto" />
+          <NavigationProperty Name="CAT_Departamentos" Relationship="Self.FK_CAT_Departamentos_CAT_Usuarios_Elimino" FromRole="CAT_Usuarios" ToRole="CAT_Departamentos" />
+          <NavigationProperty Name="CAT_Departamentos1" Relationship="Self.FK_CAT_Departamentos_CAT_Usuarios_Modifico" FromRole="CAT_Usuarios" ToRole="CAT_Departamentos" />
+          <NavigationProperty Name="CAT_Departamentos2" Relationship="Self.FK_CAT_Departamentos_CAT_Usuarios_Registro" FromRole="CAT_Usuarios" ToRole="CAT_Departamentos" />
+          <NavigationProperty Name="CAT_EmpleadosArchivos" Relationship="Self.FK_CAT_EmpleadosArchivos_CAT_Usuarios_Eliminacion" FromRole="CAT_Usuarios" ToRole="CAT_EmpleadosArchivos" />
+          <NavigationProperty Name="CAT_EmpleadosArchivos1" Relationship="Self.FK_CAT_EmpleadosArchivos_CAT_Usuarios_Registro" FromRole="CAT_Usuarios" ToRole="CAT_EmpleadosArchivos" />
+          <NavigationProperty Name="CAT_PermisoUsuario" Relationship="Self.FK_CAT_PermisoUsuario_CAT_Usuarios" FromRole="CAT_Usuarios" ToRole="CAT_PermisoUsuario" />
+          <NavigationProperty Name="CAT_Roles" Relationship="Self.FK_CAT_Usuarios_CAT_Roles" FromRole="CAT_Usuarios" ToRole="CAT_Roles" />
+          <NavigationProperty Name="LOG_RecuperarPassword" Relationship="Self.FK_LOG_RecuperarPassword_CAT_Usuarios" FromRole="CAT_Usuarios" ToRole="LOG_RecuperarPassword" />
+          <NavigationProperty Name="LOG_Sesiones" Relationship="Self.FK_LOG_Sesiones_CAT_Usuarios" FromRole="CAT_Usuarios" ToRole="LOG_Sesiones" />
+        </EntityType>
+        <EntityType Name="CFG_Configuracion">
+          <Key>
+            <PropertyRef Name="nIdConfig" />
+          </Key>
+          <Property Name="nIdConfig" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cNombreConfig" Type="String" MaxLength="400" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cMensajeConfig" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cDetalleConfig" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="bActivo" Type="Boolean" Nullable="false" />
+          <Property Name="dFechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="dFechaModificacion" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="LOG_RecuperarPassword">
+          <Key>
+            <PropertyRef Name="cID" />
+          </Key>
+          <Property Name="cID" Type="Guid" Nullable="false" />
+          <Property Name="cLogin" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dFechaVencimiento" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="dFechaGeneracion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="bActivo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK_LOG_RecuperarPassword_CAT_Usuarios" FromRole="LOG_RecuperarPassword" ToRole="CAT_Usuarios" />
+        </EntityType>
+        <EntityType Name="LOG_Sesiones">
+          <Key>
+            <PropertyRef Name="nIdSesion" />
+          </Key>
+          <Property Name="nIdSesion" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cLogin" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dFechaInicio" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="dFechaFin" Type="DateTime" Precision="3" />
+          <Property Name="cToken" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="bActivo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK_LOG_Sesiones_CAT_Usuarios" FromRole="LOG_Sesiones" ToRole="CAT_Usuarios" />
+        </EntityType>
+        <EntityType Name="CAT_Puestos_respaldo">
+          <Key>
+            <PropertyRef Name="nIdPuesto" />
+            <PropertyRef Name="cPuesto" />
+            <PropertyRef Name="nSueldo" />
+            <PropertyRef Name="nIdDepartamento" />
+            <PropertyRef Name="bActivo" />
+            <PropertyRef Name="cUsuario_Registro" />
+            <PropertyRef Name="dFecha_Registro" />
+            <PropertyRef Name="cUsuario_UltimaModificacion" />
+          </Key>
+          <Property Name="nIdPuesto" Type="Int32" Nullable="false" />
+          <Property Name="nIdPuestoPadre" Type="Int32" />
+          <Property Name="cPuesto" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nSueldo" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="nIdDepartamento" Type="Int32" Nullable="false" />
+          <Property Name="bActivo" Type="Boolean" Nullable="false" />
+          <Property Name="cUsuario_Registro" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dFecha_Registro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="cUsuario_UltimaModificacion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dFecha_UltimaModificacion" Type="DateTime" Precision="3" />
+          <Property Name="cUsuario_Eliminacion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="dFecha_Eliminacion" Type="DateTime" Precision="3" />
+        </EntityType>
+        <Association Name="FK_CAP_Corte_CAT_RubrosPrestamos">
+          <End Role="CAT_RubrosPrestamos" Type="Self.CAT_RubrosPrestamos" Multiplicity="1" />
+          <End Role="CAP_Corte" Type="Self.CAP_Corte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_RubrosPrestamos">
+              <PropertyRef Name="nIdRubro" />
+            </Principal>
+            <Dependent Role="CAP_Corte">
+              <PropertyRef Name="nIdRubro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CAP_Corte_CAT_Usuarios_Elimino">
+          <End Role="CAT_Usuarios" Type="Self.CAT_Usuarios" Multiplicity="0..1" />
+          <End Role="CAP_Corte" Type="Self.CAP_Corte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_Usuarios">
+              <PropertyRef Name="cLogin" />
+            </Principal>
+            <Dependent Role="CAP_Corte">
+              <PropertyRef Name="cUsuario_Eliminacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CAP_Corte_CAT_Usuarios_Modifico">
+          <End Role="CAT_Usuarios" Type="Self.CAT_Usuarios" Multiplicity="1" />
+          <End Role="CAP_Corte" Type="Self.CAP_Corte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_Usuarios">
+              <PropertyRef Name="cLogin" />
+            </Principal>
+            <Dependent Role="CAP_Corte">
+              <PropertyRef Name="cUsuario_UltimaModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CAP_Corte_CAT_Usuarios_Registro">
+          <End Role="CAT_Usuarios" Type="Self.CAT_Usuarios" Multiplicity="1" />
+          <End Role="CAP_Corte" Type="Self.CAP_Corte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_Usuarios">
+              <PropertyRef Name="cLogin" />
+            </Principal>
+            <Dependent Role="CAP_Corte">
+              <PropertyRef Name="cUsuario_Registro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CAP_CorteDetalle_CAP_Corte">
+          <End Role="CAP_Corte" Type="Self.CAP_Corte" Multiplicity="1" />
+          <End Role="CAP_CorteDetalle" Type="Self.CAP_CorteDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAP_Corte">
+              <PropertyRef Name="nIdCorte" />
+            </Principal>
+            <Dependent Role="CAP_CorteDetalle">
+              <PropertyRef Name="nIdCorte" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CAP_MovimientosCuenta_CAP_Corte">
+          <End Role="CAP_Corte" Type="Self.CAP_Corte" Multiplicity="0..1" />
+          <End Role="CAP_MovimientosCuenta" Type="Self.CAP_MovimientosCuenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAP_Corte">
+              <PropertyRef Name="nIdCorte" />
+            </Principal>
+            <Dependent Role="CAP_MovimientosCuenta">
+              <PropertyRef Name="nIdCorte" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CAP_CorteDetalle_CAP_SolicitudPrestamo">
+          <End Role="CAP_SolicitudPrestamo" Type="Self.CAP_SolicitudPrestamo" Multiplicity="1" />
+          <End Role="CAP_CorteDetalle" Type="Self.CAP_CorteDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAP_SolicitudPrestamo">
+              <PropertyRef Name="nIdPrestamo" />
+            </Principal>
+            <Dependent Role="CAP_CorteDetalle">
+              <PropertyRef Name="nIdPrestamo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CAP_MovimientosCuenta_CAP_MovimientosCuenta">
+          <End Role="CAP_MovimientosCuenta" Type="Self.CAP_MovimientosCuenta" Multiplicity="0..1" />
+          <End Role="CAP_MovimientosCuenta1" Type="Self.CAP_MovimientosCuenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAP_MovimientosCuenta">
+              <PropertyRef Name="nIdMovimiento" />
+            </Principal>
+            <Dependent Role="CAP_MovimientosCuenta1">
+              <PropertyRef Name="nIdMovimientoCancela" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CAP_MovimientosCuenta_CAP_SolicitudPrestamo">
+          <End Role="CAP_SolicitudPrestamo" Type="Self.CAP_SolicitudPrestamo" Multiplicity="0..1" />
+          <End Role="CAP_MovimientosCuenta" Type="Self.CAP_MovimientosCuenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAP_SolicitudPrestamo">
+              <PropertyRef Name="nIdPrestamo" />
+            </Principal>
+            <Dependent Role="CAP_MovimientosCuenta">
+              <PropertyRef Name="nIdPrestamo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CAP_MovimientosCuenta_CAT_CategoriasGasto">
+          <End Role="CAT_CategoriasGasto" Type="Self.CAT_CategoriasGasto" Multiplicity="1" />
+          <End Role="CAP_MovimientosCuenta" Type="Self.CAP_MovimientosCuenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_CategoriasGasto">
+              <PropertyRef Name="nIdCategoria" />
+            </Principal>
+            <Dependent Role="CAP_MovimientosCuenta">
+              <PropertyRef Name="nIdCategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CAP_MovimientosCuenta_CAT_Cuentas">
+          <End Role="CAT_Cuentas" Type="Self.CAT_Cuentas" Multiplicity="1" />
+          <End Role="CAP_MovimientosCuenta" Type="Self.CAP_MovimientosCuenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_Cuentas">
+              <PropertyRef Name="nIdCuenta" />
+            </Principal>
+            <Dependent Role="CAP_MovimientosCuenta">
+              <PropertyRef Name="nIdCuenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CAP_MovimientosCuenta_CAT_TipoMovimiento">
+          <End Role="CAT_TipoMovimiento" Type="Self.CAT_TipoMovimiento" Multiplicity="1" />
+          <End Role="CAP_MovimientosCuenta" Type="Self.CAP_MovimientosCuenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_TipoMovimiento">
+              <PropertyRef Name="nIdTipoMovimiento" />
+            </Principal>
+            <Dependent Role="CAP_MovimientosCuenta">
+              <PropertyRef Name="nIdTipoMovimiento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CAP_SolicitudPrestamo_CAT_Empleados">
+          <End Role="CAT_Empleados" Type="Self.CAT_Empleados" Multiplicity="1" />
+          <End Role="CAP_SolicitudPrestamo" Type="Self.CAP_SolicitudPrestamo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_Empleados">
+              <PropertyRef Name="nCodEmpleado" />
+            </Principal>
+            <Dependent Role="CAP_SolicitudPrestamo">
+              <PropertyRef Name="nCodEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CAP_SolicitudPrestamo_CAT_RubrosPrestamos">
+          <End Role="CAT_RubrosPrestamos" Type="Self.CAT_RubrosPrestamos" Multiplicity="1" />
+          <End Role="CAP_SolicitudPrestamo" Type="Self.CAP_SolicitudPrestamo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_RubrosPrestamos">
+              <PropertyRef Name="nIdRubro" />
+            </Principal>
+            <Dependent Role="CAP_SolicitudPrestamo">
+              <PropertyRef Name="nIdRubro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CAP_SolicitudPrestamo_CAT_Usuarios_Elimino">
+          <End Role="CAT_Usuarios" Type="Self.CAT_Usuarios" Multiplicity="0..1" />
+          <End Role="CAP_SolicitudPrestamo" Type="Self.CAP_SolicitudPrestamo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_Usuarios">
+              <PropertyRef Name="cLogin" />
+            </Principal>
+            <Dependent Role="CAP_SolicitudPrestamo">
+              <PropertyRef Name="cUsuario_Eliminacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CAP_SolicitudPrestamo_CAT_Usuarios_Modifico">
+          <End Role="CAT_Usuarios" Type="Self.CAT_Usuarios" Multiplicity="1" />
+          <End Role="CAP_SolicitudPrestamo" Type="Self.CAP_SolicitudPrestamo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_Usuarios">
+              <PropertyRef Name="cLogin" />
+            </Principal>
+            <Dependent Role="CAP_SolicitudPrestamo">
+              <PropertyRef Name="cUsuario_UltimaModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CAP_SolicitudPrestamo_CAT_Usuarios_Registro">
+          <End Role="CAT_Usuarios" Type="Self.CAT_Usuarios" Multiplicity="1" />
+          <End Role="CAP_SolicitudPrestamo" Type="Self.CAP_SolicitudPrestamo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_Usuarios">
+              <PropertyRef Name="cLogin" />
+            </Principal>
+            <Dependent Role="CAP_SolicitudPrestamo">
+              <PropertyRef Name="cUsuario_Registro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CAT_CategoriasGasto_CAT_Usuarios_Elimino">
+          <End Role="CAT_Usuarios" Type="Self.CAT_Usuarios" Multiplicity="0..1" />
+          <End Role="CAT_CategoriasGasto" Type="Self.CAT_CategoriasGasto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_Usuarios">
+              <PropertyRef Name="cLogin" />
+            </Principal>
+            <Dependent Role="CAT_CategoriasGasto">
+              <PropertyRef Name="cUsuario_Eliminacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CAT_CategoriasGasto_CAT_Usuarios_Modifico">
+          <End Role="CAT_Usuarios" Type="Self.CAT_Usuarios" Multiplicity="1" />
+          <End Role="CAT_CategoriasGasto" Type="Self.CAT_CategoriasGasto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_Usuarios">
+              <PropertyRef Name="cLogin" />
+            </Principal>
+            <Dependent Role="CAT_CategoriasGasto">
+              <PropertyRef Name="cUsuario_UltimaModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CAT_CategoriasGasto_CAT_Usuarios_Registro">
+          <End Role="CAT_Usuarios" Type="Self.CAT_Usuarios" Multiplicity="1" />
+          <End Role="CAT_CategoriasGasto" Type="Self.CAT_CategoriasGasto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_Usuarios">
+              <PropertyRef Name="cLogin" />
+            </Principal>
+            <Dependent Role="CAT_CategoriasGasto">
+              <PropertyRef Name="cUsuario_Registro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CAT_Departamentos_CAT_Usuarios_Elimino">
+          <End Role="CAT_Usuarios" Type="Self.CAT_Usuarios" Multiplicity="0..1" />
+          <End Role="CAT_Departamentos" Type="Self.CAT_Departamentos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_Usuarios">
+              <PropertyRef Name="cLogin" />
+            </Principal>
+            <Dependent Role="CAT_Departamentos">
+              <PropertyRef Name="cUsuario_Eliminacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CAT_Departamentos_CAT_Usuarios_Modifico">
+          <End Role="CAT_Usuarios" Type="Self.CAT_Usuarios" Multiplicity="1" />
+          <End Role="CAT_Departamentos" Type="Self.CAT_Departamentos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_Usuarios">
+              <PropertyRef Name="cLogin" />
+            </Principal>
+            <Dependent Role="CAT_Departamentos">
+              <PropertyRef Name="cUsuario_UltimaModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CAT_Departamentos_CAT_Usuarios_Registro">
+          <End Role="CAT_Usuarios" Type="Self.CAT_Usuarios" Multiplicity="1" />
+          <End Role="CAT_Departamentos" Type="Self.CAT_Departamentos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_Usuarios">
+              <PropertyRef Name="cLogin" />
+            </Principal>
+            <Dependent Role="CAT_Departamentos">
+              <PropertyRef Name="cUsuario_Registro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CAT_Puestos_CAT_Departamentos">
+          <End Role="CAT_Departamentos" Type="Self.CAT_Departamentos" Multiplicity="1" />
+          <End Role="CAT_Puestos" Type="Self.CAT_Puestos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_Departamentos">
+              <PropertyRef Name="nIdDepartamento" />
+            </Principal>
+            <Dependent Role="CAT_Puestos">
+              <PropertyRef Name="nIdDepartamento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CAT_Empleados_CAT_Puestos">
+          <End Role="CAT_Puestos" Type="Self.CAT_Puestos" Multiplicity="1" />
+          <End Role="CAT_Empleados" Type="Self.CAT_Empleados" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_Puestos">
+              <PropertyRef Name="nIdPuesto" />
+            </Principal>
+            <Dependent Role="CAT_Empleados">
+              <PropertyRef Name="nIdPuesto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CAT_EmpleadosArchivos_CAT_Empleados">
+          <End Role="CAT_Empleados" Type="Self.CAT_Empleados" Multiplicity="1" />
+          <End Role="CAT_EmpleadosArchivos" Type="Self.CAT_EmpleadosArchivos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_Empleados">
+              <PropertyRef Name="nCodEmpleado" />
+            </Principal>
+            <Dependent Role="CAT_EmpleadosArchivos">
+              <PropertyRef Name="nCodEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CAT_EmpleadosArchivos_CAT_Usuarios_Eliminacion">
+          <End Role="CAT_Usuarios" Type="Self.CAT_Usuarios" Multiplicity="0..1" />
+          <End Role="CAT_EmpleadosArchivos" Type="Self.CAT_EmpleadosArchivos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_Usuarios">
+              <PropertyRef Name="cLogin" />
+            </Principal>
+            <Dependent Role="CAT_EmpleadosArchivos">
+              <PropertyRef Name="cUsuario_Eliminacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CAT_EmpleadosArchivos_CAT_Usuarios_Registro">
+          <End Role="CAT_Usuarios" Type="Self.CAT_Usuarios" Multiplicity="1" />
+          <End Role="CAT_EmpleadosArchivos" Type="Self.CAT_EmpleadosArchivos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_Usuarios">
+              <PropertyRef Name="cLogin" />
+            </Principal>
+            <Dependent Role="CAT_EmpleadosArchivos">
+              <PropertyRef Name="cUsuario_Registro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CAT_Navegador_CAT_Navegador">
+          <End Role="CAT_Navegador" Type="Self.CAT_Navegador" Multiplicity="0..1" />
+          <End Role="CAT_Navegador1" Type="Self.CAT_Navegador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_Navegador">
+              <PropertyRef Name="nRama" />
+            </Principal>
+            <Dependent Role="CAT_Navegador1">
+              <PropertyRef Name="nRamaPadre" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CAT_PermisoUsuario_CAT_Navegador">
+          <End Role="CAT_Navegador" Type="Self.CAT_Navegador" Multiplicity="1" />
+          <End Role="CAT_PermisoUsuario" Type="Self.CAT_PermisoUsuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_Navegador">
+              <PropertyRef Name="nRama" />
+            </Principal>
+            <Dependent Role="CAT_PermisoUsuario">
+              <PropertyRef Name="nRama" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CAT_PermisoUsuario_CAT_Usuarios">
+          <End Role="CAT_Usuarios" Type="Self.CAT_Usuarios" Multiplicity="1" />
+          <End Role="CAT_PermisoUsuario" Type="Self.CAT_PermisoUsuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_Usuarios">
+              <PropertyRef Name="cLogin" />
+            </Principal>
+            <Dependent Role="CAT_PermisoUsuario">
+              <PropertyRef Name="cLogin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CAT_Puestos_CAT_Puestos">
+          <End Role="CAT_Puestos" Type="Self.CAT_Puestos" Multiplicity="0..1" />
+          <End Role="CAT_Puestos1" Type="Self.CAT_Puestos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_Puestos">
+              <PropertyRef Name="nIdPuesto" />
+            </Principal>
+            <Dependent Role="CAT_Puestos1">
+              <PropertyRef Name="nIdPuestoPadre" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CAT_Usuarios_CAT_Roles">
+          <End Role="CAT_Roles" Type="Self.CAT_Roles" Multiplicity="1" />
+          <End Role="CAT_Usuarios" Type="Self.CAT_Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_Roles">
+              <PropertyRef Name="nIdRol" />
+            </Principal>
+            <Dependent Role="CAT_Usuarios">
+              <PropertyRef Name="nIdRol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LOG_RecuperarPassword_CAT_Usuarios">
+          <End Role="CAT_Usuarios" Type="Self.CAT_Usuarios" Multiplicity="1" />
+          <End Role="LOG_RecuperarPassword" Type="Self.LOG_RecuperarPassword" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_Usuarios">
+              <PropertyRef Name="cLogin" />
+            </Principal>
+            <Dependent Role="LOG_RecuperarPassword">
+              <PropertyRef Name="cLogin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LOG_Sesiones_CAT_Usuarios">
+          <End Role="CAT_Usuarios" Type="Self.CAT_Usuarios" Multiplicity="1" />
+          <End Role="LOG_Sesiones" Type="Self.LOG_Sesiones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_Usuarios">
+              <PropertyRef Name="cLogin" />
+            </Principal>
+            <Dependent Role="LOG_Sesiones">
+              <PropertyRef Name="cLogin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BackEndEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CAP_Corte" EntityType="Self.CAP_Corte" />
+          <EntitySet Name="CAP_CorteDetalle" EntityType="Self.CAP_CorteDetalle" />
+          <EntitySet Name="CAP_MovimientosCuenta" EntityType="Self.CAP_MovimientosCuenta" />
+          <EntitySet Name="CAP_SolicitudPrestamo" EntityType="Self.CAP_SolicitudPrestamo" />
+          <EntitySet Name="CAT_CategoriasGasto" EntityType="Self.CAT_CategoriasGasto" />
+          <EntitySet Name="CAT_Cuentas" EntityType="Self.CAT_Cuentas" />
+          <EntitySet Name="CAT_Departamentos" EntityType="Self.CAT_Departamentos" />
+          <EntitySet Name="CAT_Empleados" EntityType="Self.CAT_Empleados" />
+          <EntitySet Name="CAT_EmpleadosArchivos" EntityType="Self.CAT_EmpleadosArchivos" />
+          <EntitySet Name="CAT_Navegador" EntityType="Self.CAT_Navegador" />
+          <EntitySet Name="CAT_PermisoUsuario" EntityType="Self.CAT_PermisoUsuario" />
+          <EntitySet Name="CAT_Puestos" EntityType="Self.CAT_Puestos" />
+          <EntitySet Name="CAT_Roles" EntityType="Self.CAT_Roles" />
+          <EntitySet Name="CAT_RubrosPrestamos" EntityType="Self.CAT_RubrosPrestamos" />
+          <EntitySet Name="CAT_TabuladorAguinaldo" EntityType="Self.CAT_TabuladorAguinaldo" />
+          <EntitySet Name="CAT_TabuladorPrimaVacacional" EntityType="Self.CAT_TabuladorPrimaVacacional" />
+          <EntitySet Name="CAT_TipoMovimiento" EntityType="Self.CAT_TipoMovimiento" />
+          <EntitySet Name="CAT_Usuarios" EntityType="Self.CAT_Usuarios" />
+          <EntitySet Name="CFG_Configuracion" EntityType="Self.CFG_Configuracion" />
+          <EntitySet Name="LOG_RecuperarPassword" EntityType="Self.LOG_RecuperarPassword" />
+          <EntitySet Name="LOG_Sesiones" EntityType="Self.LOG_Sesiones" />
+          <EntitySet Name="CAT_Puestos_respaldo" EntityType="Self.CAT_Puestos_respaldo" />
+          <AssociationSet Name="FK_CAP_Corte_CAT_RubrosPrestamos" Association="Self.FK_CAP_Corte_CAT_RubrosPrestamos">
+            <End Role="CAT_RubrosPrestamos" EntitySet="CAT_RubrosPrestamos" />
+            <End Role="CAP_Corte" EntitySet="CAP_Corte" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CAP_Corte_CAT_Usuarios_Elimino" Association="Self.FK_CAP_Corte_CAT_Usuarios_Elimino">
+            <End Role="CAT_Usuarios" EntitySet="CAT_Usuarios" />
+            <End Role="CAP_Corte" EntitySet="CAP_Corte" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CAP_Corte_CAT_Usuarios_Modifico" Association="Self.FK_CAP_Corte_CAT_Usuarios_Modifico">
+            <End Role="CAT_Usuarios" EntitySet="CAT_Usuarios" />
+            <End Role="CAP_Corte" EntitySet="CAP_Corte" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CAP_Corte_CAT_Usuarios_Registro" Association="Self.FK_CAP_Corte_CAT_Usuarios_Registro">
+            <End Role="CAT_Usuarios" EntitySet="CAT_Usuarios" />
+            <End Role="CAP_Corte" EntitySet="CAP_Corte" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CAP_CorteDetalle_CAP_Corte" Association="Self.FK_CAP_CorteDetalle_CAP_Corte">
+            <End Role="CAP_Corte" EntitySet="CAP_Corte" />
+            <End Role="CAP_CorteDetalle" EntitySet="CAP_CorteDetalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CAP_MovimientosCuenta_CAP_Corte" Association="Self.FK_CAP_MovimientosCuenta_CAP_Corte">
+            <End Role="CAP_Corte" EntitySet="CAP_Corte" />
+            <End Role="CAP_MovimientosCuenta" EntitySet="CAP_MovimientosCuenta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CAP_CorteDetalle_CAP_SolicitudPrestamo" Association="Self.FK_CAP_CorteDetalle_CAP_SolicitudPrestamo">
+            <End Role="CAP_SolicitudPrestamo" EntitySet="CAP_SolicitudPrestamo" />
+            <End Role="CAP_CorteDetalle" EntitySet="CAP_CorteDetalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CAP_MovimientosCuenta_CAP_MovimientosCuenta" Association="Self.FK_CAP_MovimientosCuenta_CAP_MovimientosCuenta">
+            <End Role="CAP_MovimientosCuenta" EntitySet="CAP_MovimientosCuenta" />
+            <End Role="CAP_MovimientosCuenta1" EntitySet="CAP_MovimientosCuenta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CAP_MovimientosCuenta_CAP_SolicitudPrestamo" Association="Self.FK_CAP_MovimientosCuenta_CAP_SolicitudPrestamo">
+            <End Role="CAP_SolicitudPrestamo" EntitySet="CAP_SolicitudPrestamo" />
+            <End Role="CAP_MovimientosCuenta" EntitySet="CAP_MovimientosCuenta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CAP_MovimientosCuenta_CAT_CategoriasGasto" Association="Self.FK_CAP_MovimientosCuenta_CAT_CategoriasGasto">
+            <End Role="CAT_CategoriasGasto" EntitySet="CAT_CategoriasGasto" />
+            <End Role="CAP_MovimientosCuenta" EntitySet="CAP_MovimientosCuenta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CAP_MovimientosCuenta_CAT_Cuentas" Association="Self.FK_CAP_MovimientosCuenta_CAT_Cuentas">
+            <End Role="CAT_Cuentas" EntitySet="CAT_Cuentas" />
+            <End Role="CAP_MovimientosCuenta" EntitySet="CAP_MovimientosCuenta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CAP_MovimientosCuenta_CAT_TipoMovimiento" Association="Self.FK_CAP_MovimientosCuenta_CAT_TipoMovimiento">
+            <End Role="CAT_TipoMovimiento" EntitySet="CAT_TipoMovimiento" />
+            <End Role="CAP_MovimientosCuenta" EntitySet="CAP_MovimientosCuenta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CAP_SolicitudPrestamo_CAT_Empleados" Association="Self.FK_CAP_SolicitudPrestamo_CAT_Empleados">
+            <End Role="CAT_Empleados" EntitySet="CAT_Empleados" />
+            <End Role="CAP_SolicitudPrestamo" EntitySet="CAP_SolicitudPrestamo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CAP_SolicitudPrestamo_CAT_RubrosPrestamos" Association="Self.FK_CAP_SolicitudPrestamo_CAT_RubrosPrestamos">
+            <End Role="CAT_RubrosPrestamos" EntitySet="CAT_RubrosPrestamos" />
+            <End Role="CAP_SolicitudPrestamo" EntitySet="CAP_SolicitudPrestamo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CAP_SolicitudPrestamo_CAT_Usuarios_Elimino" Association="Self.FK_CAP_SolicitudPrestamo_CAT_Usuarios_Elimino">
+            <End Role="CAT_Usuarios" EntitySet="CAT_Usuarios" />
+            <End Role="CAP_SolicitudPrestamo" EntitySet="CAP_SolicitudPrestamo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CAP_SolicitudPrestamo_CAT_Usuarios_Modifico" Association="Self.FK_CAP_SolicitudPrestamo_CAT_Usuarios_Modifico">
+            <End Role="CAT_Usuarios" EntitySet="CAT_Usuarios" />
+            <End Role="CAP_SolicitudPrestamo" EntitySet="CAP_SolicitudPrestamo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CAP_SolicitudPrestamo_CAT_Usuarios_Registro" Association="Self.FK_CAP_SolicitudPrestamo_CAT_Usuarios_Registro">
+            <End Role="CAT_Usuarios" EntitySet="CAT_Usuarios" />
+            <End Role="CAP_SolicitudPrestamo" EntitySet="CAP_SolicitudPrestamo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CAT_CategoriasGasto_CAT_Usuarios_Elimino" Association="Self.FK_CAT_CategoriasGasto_CAT_Usuarios_Elimino">
+            <End Role="CAT_Usuarios" EntitySet="CAT_Usuarios" />
+            <End Role="CAT_CategoriasGasto" EntitySet="CAT_CategoriasGasto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CAT_CategoriasGasto_CAT_Usuarios_Modifico" Association="Self.FK_CAT_CategoriasGasto_CAT_Usuarios_Modifico">
+            <End Role="CAT_Usuarios" EntitySet="CAT_Usuarios" />
+            <End Role="CAT_CategoriasGasto" EntitySet="CAT_CategoriasGasto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CAT_CategoriasGasto_CAT_Usuarios_Registro" Association="Self.FK_CAT_CategoriasGasto_CAT_Usuarios_Registro">
+            <End Role="CAT_Usuarios" EntitySet="CAT_Usuarios" />
+            <End Role="CAT_CategoriasGasto" EntitySet="CAT_CategoriasGasto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CAT_Departamentos_CAT_Usuarios_Elimino" Association="Self.FK_CAT_Departamentos_CAT_Usuarios_Elimino">
+            <End Role="CAT_Usuarios" EntitySet="CAT_Usuarios" />
+            <End Role="CAT_Departamentos" EntitySet="CAT_Departamentos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CAT_Departamentos_CAT_Usuarios_Modifico" Association="Self.FK_CAT_Departamentos_CAT_Usuarios_Modifico">
+            <End Role="CAT_Usuarios" EntitySet="CAT_Usuarios" />
+            <End Role="CAT_Departamentos" EntitySet="CAT_Departamentos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CAT_Departamentos_CAT_Usuarios_Registro" Association="Self.FK_CAT_Departamentos_CAT_Usuarios_Registro">
+            <End Role="CAT_Usuarios" EntitySet="CAT_Usuarios" />
+            <End Role="CAT_Departamentos" EntitySet="CAT_Departamentos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CAT_Puestos_CAT_Departamentos" Association="Self.FK_CAT_Puestos_CAT_Departamentos">
+            <End Role="CAT_Departamentos" EntitySet="CAT_Departamentos" />
+            <End Role="CAT_Puestos" EntitySet="CAT_Puestos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CAT_Empleados_CAT_Puestos" Association="Self.FK__CAT_Empleados_CAT_Puestos">
+            <End Role="CAT_Puestos" EntitySet="CAT_Puestos" />
+            <End Role="CAT_Empleados" EntitySet="CAT_Empleados" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CAT_EmpleadosArchivos_CAT_Empleados" Association="Self.FK_CAT_EmpleadosArchivos_CAT_Empleados">
+            <End Role="CAT_Empleados" EntitySet="CAT_Empleados" />
+            <End Role="CAT_EmpleadosArchivos" EntitySet="CAT_EmpleadosArchivos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CAT_EmpleadosArchivos_CAT_Usuarios_Eliminacion" Association="Self.FK_CAT_EmpleadosArchivos_CAT_Usuarios_Eliminacion">
+            <End Role="CAT_Usuarios" EntitySet="CAT_Usuarios" />
+            <End Role="CAT_EmpleadosArchivos" EntitySet="CAT_EmpleadosArchivos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CAT_EmpleadosArchivos_CAT_Usuarios_Registro" Association="Self.FK_CAT_EmpleadosArchivos_CAT_Usuarios_Registro">
+            <End Role="CAT_Usuarios" EntitySet="CAT_Usuarios" />
+            <End Role="CAT_EmpleadosArchivos" EntitySet="CAT_EmpleadosArchivos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CAT_Navegador_CAT_Navegador" Association="Self.FK_CAT_Navegador_CAT_Navegador">
+            <End Role="CAT_Navegador" EntitySet="CAT_Navegador" />
+            <End Role="CAT_Navegador1" EntitySet="CAT_Navegador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CAT_PermisoUsuario_CAT_Navegador" Association="Self.FK_CAT_PermisoUsuario_CAT_Navegador">
+            <End Role="CAT_Navegador" EntitySet="CAT_Navegador" />
+            <End Role="CAT_PermisoUsuario" EntitySet="CAT_PermisoUsuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CAT_PermisoUsuario_CAT_Usuarios" Association="Self.FK_CAT_PermisoUsuario_CAT_Usuarios">
+            <End Role="CAT_Usuarios" EntitySet="CAT_Usuarios" />
+            <End Role="CAT_PermisoUsuario" EntitySet="CAT_PermisoUsuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CAT_Puestos_CAT_Puestos" Association="Self.FK_CAT_Puestos_CAT_Puestos">
+            <End Role="CAT_Puestos" EntitySet="CAT_Puestos" />
+            <End Role="CAT_Puestos1" EntitySet="CAT_Puestos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CAT_Usuarios_CAT_Roles" Association="Self.FK_CAT_Usuarios_CAT_Roles">
+            <End Role="CAT_Roles" EntitySet="CAT_Roles" />
+            <End Role="CAT_Usuarios" EntitySet="CAT_Usuarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LOG_RecuperarPassword_CAT_Usuarios" Association="Self.FK_LOG_RecuperarPassword_CAT_Usuarios">
+            <End Role="CAT_Usuarios" EntitySet="CAT_Usuarios" />
+            <End Role="LOG_RecuperarPassword" EntitySet="LOG_RecuperarPassword" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LOG_Sesiones_CAT_Usuarios" Association="Self.FK_LOG_Sesiones_CAT_Usuarios">
+            <End Role="CAT_Usuarios" EntitySet="CAT_Usuarios" />
+            <End Role="LOG_Sesiones" EntitySet="LOG_Sesiones" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BackEndModelStoreContainer" CdmEntityContainer="BackEndEntities">
+          <EntitySetMapping Name="CAP_Corte">
+            <EntityTypeMapping TypeName="BackEndModel.CAP_Corte">
+              <MappingFragment StoreEntitySet="CAP_Corte">
+                <ScalarProperty Name="nIdCorte" ColumnName="nIdCorte" />
+                <ScalarProperty Name="nIdRubro" ColumnName="nIdRubro" />
+                <ScalarProperty Name="dFechaCorte" ColumnName="dFechaCorte" />
+                <ScalarProperty Name="nTotal" ColumnName="nTotal" />
+                <ScalarProperty Name="bPagado" ColumnName="bPagado" />
+                <ScalarProperty Name="bActivo" ColumnName="bActivo" />
+                <ScalarProperty Name="cUsuario_Registro" ColumnName="cUsuario_Registro" />
+                <ScalarProperty Name="dFecha_Registro" ColumnName="dFecha_Registro" />
+                <ScalarProperty Name="cUsuario_UltimaModificacion" ColumnName="cUsuario_UltimaModificacion" />
+                <ScalarProperty Name="dFecha_UltimaModificacion" ColumnName="dFecha_UltimaModificacion" />
+                <ScalarProperty Name="cUsuario_Eliminacion" ColumnName="cUsuario_Eliminacion" />
+                <ScalarProperty Name="dFecha_Eliminacion" ColumnName="dFecha_Eliminacion" />
+                <ScalarProperty Name="nVersion" ColumnName="nVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CAP_CorteDetalle">
+            <EntityTypeMapping TypeName="BackEndModel.CAP_CorteDetalle">
+              <MappingFragment StoreEntitySet="CAP_CorteDetalle">
+                <ScalarProperty Name="nIdCorte" ColumnName="nIdCorte" />
+                <ScalarProperty Name="nIdPrestamo" ColumnName="nIdPrestamo" />
+                <ScalarProperty Name="nImporte" ColumnName="nImporte" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CAP_MovimientosCuenta">
+            <EntityTypeMapping TypeName="BackEndModel.CAP_MovimientosCuenta">
+              <MappingFragment StoreEntitySet="CAP_MovimientosCuenta">
+                <ScalarProperty Name="nIdMovimiento" ColumnName="nIdMovimiento" />
+                <ScalarProperty Name="nIdCuenta" ColumnName="nIdCuenta" />
+                <ScalarProperty Name="nIdTipoMovimiento" ColumnName="nIdTipoMovimiento" />
+                <ScalarProperty Name="nIdCategoria" ColumnName="nIdCategoria" />
+                <ScalarProperty Name="nIdCorte" ColumnName="nIdCorte" />
+                <ScalarProperty Name="nIdPrestamo" ColumnName="nIdPrestamo" />
+                <ScalarProperty Name="nIdMovimientoCancela" ColumnName="nIdMovimientoCancela" />
+                <ScalarProperty Name="nImporte" ColumnName="nImporte" />
+                <ScalarProperty Name="cObservaciones" ColumnName="cObservaciones" />
+                <ScalarProperty Name="cRutaDocumento" ColumnName="cRutaDocumento" />
+                <ScalarProperty Name="bActivo" ColumnName="bActivo" />
+                <ScalarProperty Name="cUsuario_Registro" ColumnName="cUsuario_Registro" />
+                <ScalarProperty Name="dFecha_Registro" ColumnName="dFecha_Registro" />
+                <ScalarProperty Name="cUsuario_Eliminacion" ColumnName="cUsuario_Eliminacion" />
+                <ScalarProperty Name="dFecha_Eliminacion" ColumnName="dFecha_Eliminacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CAP_SolicitudPrestamo">
+            <EntityTypeMapping TypeName="BackEndModel.CAP_SolicitudPrestamo">
+              <MappingFragment StoreEntitySet="CAP_SolicitudPrestamo">
+                <ScalarProperty Name="nIdPrestamo" ColumnName="nIdPrestamo" />
+                <ScalarProperty Name="nCodEmpleado" ColumnName="nCodEmpleado" />
+                <ScalarProperty Name="nIdRubro" ColumnName="nIdRubro" />
+                <ScalarProperty Name="nImporte" ColumnName="nImporte" />
+                <ScalarProperty Name="nSaldo" ColumnName="nSaldo" />
+                <ScalarProperty Name="dFechaCobro" ColumnName="dFechaCobro" />
+                <ScalarProperty Name="cRutaArchivoINE_Frente" ColumnName="cRutaArchivoINE_Frente" />
+                <ScalarProperty Name="cRutaArchivoINE_Atras" ColumnName="cRutaArchivoINE_Atras" />
+                <ScalarProperty Name="cRutaPagare" ColumnName="cRutaPagare" />
+                <ScalarProperty Name="cRutaCheque" ColumnName="cRutaCheque" />
+                <ScalarProperty Name="nVersion" ColumnName="nVersion" />
+                <ScalarProperty Name="bConCorte" ColumnName="bConCorte" />
+                <ScalarProperty Name="bActivo" ColumnName="bActivo" />
+                <ScalarProperty Name="cUsuario_Registro" ColumnName="cUsuario_Registro" />
+                <ScalarProperty Name="dFecha_Registro" ColumnName="dFecha_Registro" />
+                <ScalarProperty Name="cUsuario_UltimaModificacion" ColumnName="cUsuario_UltimaModificacion" />
+                <ScalarProperty Name="dFecha_UltimaModificacion" ColumnName="dFecha_UltimaModificacion" />
+                <ScalarProperty Name="cUsuario_Eliminacion" ColumnName="cUsuario_Eliminacion" />
+                <ScalarProperty Name="dFecha_Eliminacion" ColumnName="dFecha_Eliminacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CAT_CategoriasGasto">
+            <EntityTypeMapping TypeName="BackEndModel.CAT_CategoriasGasto">
+              <MappingFragment StoreEntitySet="CAT_CategoriasGasto">
+                <ScalarProperty Name="nIdCategoria" ColumnName="nIdCategoria" />
+                <ScalarProperty Name="cCategoria" ColumnName="cCategoria" />
+                <ScalarProperty Name="bActivo" ColumnName="bActivo" />
+                <ScalarProperty Name="cUsuario_Registro" ColumnName="cUsuario_Registro" />
+                <ScalarProperty Name="dFecha_Registro" ColumnName="dFecha_Registro" />
+                <ScalarProperty Name="cUsuario_UltimaModificacion" ColumnName="cUsuario_UltimaModificacion" />
+                <ScalarProperty Name="dFecha_UltimaModificacion" ColumnName="dFecha_UltimaModificacion" />
+                <ScalarProperty Name="cUsuario_Eliminacion" ColumnName="cUsuario_Eliminacion" />
+                <ScalarProperty Name="dFecha_Eliminacion" ColumnName="dFecha_Eliminacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CAT_Cuentas">
+            <EntityTypeMapping TypeName="BackEndModel.CAT_Cuentas">
+              <MappingFragment StoreEntitySet="CAT_Cuentas">
+                <ScalarProperty Name="nIdCuenta" ColumnName="nIdCuenta" />
+                <ScalarProperty Name="cCuenta" ColumnName="cCuenta" />
+                <ScalarProperty Name="nSaldo" ColumnName="nSaldo" />
+                <ScalarProperty Name="bActivo" ColumnName="bActivo" />
+                <ScalarProperty Name="cUsuario_Registro" ColumnName="cUsuario_Registro" />
+                <ScalarProperty Name="dFecha_Registro" ColumnName="dFecha_Registro" />
+                <ScalarProperty Name="cUsuario_UltimaModificacion" ColumnName="cUsuario_UltimaModificacion" />
+                <ScalarProperty Name="dFecha_UltimaModificacion" ColumnName="dFecha_UltimaModificacion" />
+                <ScalarProperty Name="cUsuario_Eliminacion" ColumnName="cUsuario_Eliminacion" />
+                <ScalarProperty Name="dFecha_Eliminacion" ColumnName="dFecha_Eliminacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CAT_Departamentos">
+            <EntityTypeMapping TypeName="BackEndModel.CAT_Departamentos">
+              <MappingFragment StoreEntitySet="CAT_Departamentos">
+                <ScalarProperty Name="nIdDepartamento" ColumnName="nIdDepartamento" />
+                <ScalarProperty Name="cDepartamento" ColumnName="cDepartamento" />
+                <ScalarProperty Name="bActivo" ColumnName="bActivo" />
+                <ScalarProperty Name="cUsuario_Registro" ColumnName="cUsuario_Registro" />
+                <ScalarProperty Name="dFecha_Registro" ColumnName="dFecha_Registro" />
+                <ScalarProperty Name="cUsuario_UltimaModificacion" ColumnName="cUsuario_UltimaModificacion" />
+                <ScalarProperty Name="dFecha_UltimaModificacion" ColumnName="dFecha_UltimaModificacion" />
+                <ScalarProperty Name="cUsuario_Eliminacion" ColumnName="cUsuario_Eliminacion" />
+                <ScalarProperty Name="dFecha_Eliminacion" ColumnName="dFecha_Eliminacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CAT_Empleados">
+            <EntityTypeMapping TypeName="BackEndModel.CAT_Empleados">
+              <MappingFragment StoreEntitySet="CAT_Empleados">
+                <ScalarProperty Name="nCodEmpleado" ColumnName="nCodEmpleado" />
+                <ScalarProperty Name="cNombre" ColumnName="cNombre" />
+                <ScalarProperty Name="nIdPuesto" ColumnName="nIdPuesto" />
+                <ScalarProperty Name="dFechaIngreso" ColumnName="dFechaIngreso" />
+                <ScalarProperty Name="nEstatusCrecimiento" ColumnName="nEstatusCrecimiento" />
+                <ScalarProperty Name="cObservaciones" ColumnName="cObservaciones" />
+                <ScalarProperty Name="bActivo" ColumnName="bActivo" />
+                <ScalarProperty Name="cUsuario_Registro" ColumnName="cUsuario_Registro" />
+                <ScalarProperty Name="dFecha_Registro" ColumnName="dFecha_Registro" />
+                <ScalarProperty Name="cUsuario_UltimaModificacion" ColumnName="cUsuario_UltimaModificacion" />
+                <ScalarProperty Name="dFecha_UltimaModificacion" ColumnName="dFecha_UltimaModificacion" />
+                <ScalarProperty Name="cUsuario_Eliminacion" ColumnName="cUsuario_Eliminacion" />
+                <ScalarProperty Name="dFecha_Eliminacion" ColumnName="dFecha_Eliminacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CAT_EmpleadosArchivos">
+            <EntityTypeMapping TypeName="BackEndModel.CAT_EmpleadosArchivos">
+              <MappingFragment StoreEntitySet="CAT_EmpleadosArchivos">
+                <ScalarProperty Name="nIdArchivoEmpleado" ColumnName="nIdArchivoEmpleado" />
+                <ScalarProperty Name="nCodEmpleado" ColumnName="nCodEmpleado" />
+                <ScalarProperty Name="cRutaArchivo" ColumnName="cRutaArchivo" />
+                <ScalarProperty Name="cNombre" ColumnName="cNombre" />
+                <ScalarProperty Name="bActivo" ColumnName="bActivo" />
+                <ScalarProperty Name="cUsuario_Registro" ColumnName="cUsuario_Registro" />
+                <ScalarProperty Name="dFecha_Registro" ColumnName="dFecha_Registro" />
+                <ScalarProperty Name="cUsuario_Eliminacion" ColumnName="cUsuario_Eliminacion" />
+                <ScalarProperty Name="dFecha_Eliminacion" ColumnName="dFecha_Eliminacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CAT_Navegador">
+            <EntityTypeMapping TypeName="BackEndModel.CAT_Navegador">
+              <MappingFragment StoreEntitySet="CAT_Navegador">
+                <ScalarProperty Name="nRama" ColumnName="nRama" />
+                <ScalarProperty Name="nRamaPadre" ColumnName="nRamaPadre" />
+                <ScalarProperty Name="nOrden" ColumnName="nOrden" />
+                <ScalarProperty Name="cNombreRama" ColumnName="cNombreRama" />
+                <ScalarProperty Name="cOpcion" ColumnName="cOpcion" />
+                <ScalarProperty Name="cRuta" ColumnName="cRuta" />
+                <ScalarProperty Name="bActivo" ColumnName="bActivo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CAT_PermisoUsuario">
+            <EntityTypeMapping TypeName="BackEndModel.CAT_PermisoUsuario">
+              <MappingFragment StoreEntitySet="CAT_PermisoUsuario">
+                <ScalarProperty Name="cLogin" ColumnName="cLogin" />
+                <ScalarProperty Name="nRama" ColumnName="nRama" />
+                <ScalarProperty Name="bActivo" ColumnName="bActivo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CAT_Puestos">
+            <EntityTypeMapping TypeName="BackEndModel.CAT_Puestos">
+              <MappingFragment StoreEntitySet="CAT_Puestos">
+                <ScalarProperty Name="nIdPuesto" ColumnName="nIdPuesto" />
+                <ScalarProperty Name="nIdPuestoPadre" ColumnName="nIdPuestoPadre" />
+                <ScalarProperty Name="cPuesto" ColumnName="cPuesto" />
+                <ScalarProperty Name="nSueldo" ColumnName="nSueldo" />
+                <ScalarProperty Name="nIdDepartamento" ColumnName="nIdDepartamento" />
+                <ScalarProperty Name="bActivo" ColumnName="bActivo" />
+                <ScalarProperty Name="cUsuario_Registro" ColumnName="cUsuario_Registro" />
+                <ScalarProperty Name="dFecha_Registro" ColumnName="dFecha_Registro" />
+                <ScalarProperty Name="cUsuario_UltimaModificacion" ColumnName="cUsuario_UltimaModificacion" />
+                <ScalarProperty Name="dFecha_UltimaModificacion" ColumnName="dFecha_UltimaModificacion" />
+                <ScalarProperty Name="cUsuario_Eliminacion" ColumnName="cUsuario_Eliminacion" />
+                <ScalarProperty Name="dFecha_Eliminacion" ColumnName="dFecha_Eliminacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CAT_Roles">
+            <EntityTypeMapping TypeName="BackEndModel.CAT_Roles">
+              <MappingFragment StoreEntitySet="CAT_Roles">
+                <ScalarProperty Name="nIdRol" ColumnName="nIdRol" />
+                <ScalarProperty Name="cNombre" ColumnName="cNombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CAT_RubrosPrestamos">
+            <EntityTypeMapping TypeName="BackEndModel.CAT_RubrosPrestamos">
+              <MappingFragment StoreEntitySet="CAT_RubrosPrestamos">
+                <ScalarProperty Name="nIdRubro" ColumnName="nIdRubro" />
+                <ScalarProperty Name="cRubro" ColumnName="cRubro" />
+                <ScalarProperty Name="bMensual" ColumnName="bMensual" />
+                <ScalarProperty Name="nMesCorte" ColumnName="nMesCorte" />
+                <ScalarProperty Name="nDiaCorte" ColumnName="nDiaCorte" />
+                <ScalarProperty Name="bAguinaldo" ColumnName="bAguinaldo" />
+                <ScalarProperty Name="bActivo" ColumnName="bActivo" />
+                <ScalarProperty Name="cUsuario_Registro" ColumnName="cUsuario_Registro" />
+                <ScalarProperty Name="dFecha_Registro" ColumnName="dFecha_Registro" />
+                <ScalarProperty Name="cUsuario_UltimaModificacion" ColumnName="cUsuario_UltimaModificacion" />
+                <ScalarProperty Name="dFecha_UltimaModificacion" ColumnName="dFecha_UltimaModificacion" />
+                <ScalarProperty Name="cUsuario_Eliminacion" ColumnName="cUsuario_Eliminacion" />
+                <ScalarProperty Name="dFecha_Eliminacion" ColumnName="dFecha_Eliminacion" />
+                <ScalarProperty Name="cNombreCorto" ColumnName="cNombreCorto" />
+                <ScalarProperty Name="bFunerario" ColumnName="bFunerario" />
+                <ScalarProperty Name="nImporteMaximo" ColumnName="nImporteMaximo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CAT_TabuladorAguinaldo">
+            <EntityTypeMapping TypeName="BackEndModel.CAT_TabuladorAguinaldo">
+              <MappingFragment StoreEntitySet="CAT_TabuladorAguinaldo">
+                <ScalarProperty Name="nAnio" ColumnName="nAnio" />
+                <ScalarProperty Name="nDiasSalario" ColumnName="nDiasSalario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CAT_TabuladorPrimaVacacional">
+            <EntityTypeMapping TypeName="BackEndModel.CAT_TabuladorPrimaVacacional">
+              <MappingFragment StoreEntitySet="CAT_TabuladorPrimaVacacional">
+                <ScalarProperty Name="nAnio" ColumnName="nAnio" />
+                <ScalarProperty Name="nDiasSalario" ColumnName="nDiasSalario" />
+                <ScalarProperty Name="nPorcPrima" ColumnName="nPorcPrima" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CAT_TipoMovimiento">
+            <EntityTypeMapping TypeName="BackEndModel.CAT_TipoMovimiento">
+              <MappingFragment StoreEntitySet="CAT_TipoMovimiento">
+                <ScalarProperty Name="nIdTipoMovimiento" ColumnName="nIdTipoMovimiento" />
+                <ScalarProperty Name="cTipoMovimiento" ColumnName="cTipoMovimiento" />
+                <ScalarProperty Name="bRestar" ColumnName="bRestar" />
+                <ScalarProperty Name="bActivo" ColumnName="bActivo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CAT_Usuarios">
+            <EntityTypeMapping TypeName="BackEndModel.CAT_Usuarios">
+              <MappingFragment StoreEntitySet="CAT_Usuarios">
+                <ScalarProperty Name="cLogin" ColumnName="cLogin" />
+                <ScalarProperty Name="cNombre" ColumnName="cNombre" />
+                <ScalarProperty Name="cNombreCorto" ColumnName="cNombreCorto" />
+                <ScalarProperty Name="cEmail" ColumnName="cEmail" />
+                <ScalarProperty Name="cPassword" ColumnName="cPassword" />
+                <ScalarProperty Name="dFechaExpiracion" ColumnName="dFechaExpiracion" />
+                <ScalarProperty Name="nIdRol" ColumnName="nIdRol" />
+                <ScalarProperty Name="dFechaAlta" ColumnName="dFechaAlta" />
+                <ScalarProperty Name="dFechaBaja" ColumnName="dFechaBaja" />
+                <ScalarProperty Name="nIntentosFallidos" ColumnName="nIntentosFallidos" />
+                <ScalarProperty Name="dFechaUltimoIntento" ColumnName="dFechaUltimoIntento" />
+                <ScalarProperty Name="dFechaBloqueo" ColumnName="dFechaBloqueo" />
+                <ScalarProperty Name="cFotoPerfil" ColumnName="cFotoPerfil" />
+                <ScalarProperty Name="bHombre" ColumnName="bHombre" />
+                <ScalarProperty Name="bActivo" ColumnName="bActivo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CFG_Configuracion">
+            <EntityTypeMapping TypeName="BackEndModel.CFG_Configuracion">
+              <MappingFragment StoreEntitySet="CFG_Configuracion">
+                <ScalarProperty Name="nIdConfig" ColumnName="nIdConfig" />
+                <ScalarProperty Name="cNombreConfig" ColumnName="cNombreConfig" />
+                <ScalarProperty Name="cMensajeConfig" ColumnName="cMensajeConfig" />
+                <ScalarProperty Name="cDetalleConfig" ColumnName="cDetalleConfig" />
+                <ScalarProperty Name="bActivo" ColumnName="bActivo" />
+                <ScalarProperty Name="dFechaRegistro" ColumnName="dFechaRegistro" />
+                <ScalarProperty Name="dFechaModificacion" ColumnName="dFechaModificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LOG_RecuperarPassword">
+            <EntityTypeMapping TypeName="BackEndModel.LOG_RecuperarPassword">
+              <MappingFragment StoreEntitySet="LOG_RecuperarPassword">
+                <ScalarProperty Name="cID" ColumnName="cID" />
+                <ScalarProperty Name="cLogin" ColumnName="cLogin" />
+                <ScalarProperty Name="dFechaVencimiento" ColumnName="dFechaVencimiento" />
+                <ScalarProperty Name="dFechaGeneracion" ColumnName="dFechaGeneracion" />
+                <ScalarProperty Name="bActivo" ColumnName="bActivo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LOG_Sesiones">
+            <EntityTypeMapping TypeName="BackEndModel.LOG_Sesiones">
+              <MappingFragment StoreEntitySet="LOG_Sesiones">
+                <ScalarProperty Name="nIdSesion" ColumnName="nIdSesion" />
+                <ScalarProperty Name="cLogin" ColumnName="cLogin" />
+                <ScalarProperty Name="dFechaInicio" ColumnName="dFechaInicio" />
+                <ScalarProperty Name="dFechaFin" ColumnName="dFechaFin" />
+                <ScalarProperty Name="cToken" ColumnName="cToken" />
+                <ScalarProperty Name="bActivo" ColumnName="bActivo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CAT_Puestos_respaldo">
+            <EntityTypeMapping TypeName="BackEndModel.CAT_Puestos_respaldo">
+              <MappingFragment StoreEntitySet="CAT_Puestos_respaldo">
+                <ScalarProperty Name="nIdPuesto" ColumnName="nIdPuesto" />
+                <ScalarProperty Name="nIdPuestoPadre" ColumnName="nIdPuestoPadre" />
+                <ScalarProperty Name="cPuesto" ColumnName="cPuesto" />
+                <ScalarProperty Name="nSueldo" ColumnName="nSueldo" />
+                <ScalarProperty Name="nIdDepartamento" ColumnName="nIdDepartamento" />
+                <ScalarProperty Name="bActivo" ColumnName="bActivo" />
+                <ScalarProperty Name="cUsuario_Registro" ColumnName="cUsuario_Registro" />
+                <ScalarProperty Name="dFecha_Registro" ColumnName="dFecha_Registro" />
+                <ScalarProperty Name="cUsuario_UltimaModificacion" ColumnName="cUsuario_UltimaModificacion" />
+                <ScalarProperty Name="dFecha_UltimaModificacion" ColumnName="dFecha_UltimaModificacion" />
+                <ScalarProperty Name="cUsuario_Eliminacion" ColumnName="cUsuario_Eliminacion" />
+                <ScalarProperty Name="dFecha_Eliminacion" ColumnName="dFecha_Eliminacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
